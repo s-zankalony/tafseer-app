@@ -4,7 +4,7 @@ const DisplayLinks = ({ links }) => {
   return (
     <>
       <div className="row">
-        {links.slice(0, 9).map((link, index) => {
+        {links.slice(1, 10).map((link, index) => {
           const videoId = getId(link.url);
           const thumbSRC = `https://www.youtube.com/embed/${videoId}`;
           return (
@@ -25,12 +25,12 @@ const DisplayLinks = ({ links }) => {
                 </div>
 
                 <div className="card-body d-flex flex-column">
-                  <p className="card-title text-primary mb-2">
+                  <h4 className="card-title text-primary mb-2">
                     سورة: {link.sura}
-                  </p>
+                  </h4>
                   <a
                     target="_blank"
-                    className="card-link mt-auto btn btn-outline-primary"
+                    className="card-link mt-auto btn btn-primary"
                     href={link.url}
                     rel="noopener noreferrer"
                   >
