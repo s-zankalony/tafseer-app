@@ -3,34 +3,32 @@ import { getId } from '../assets/functions';
 const DisplayLinks = ({ links }) => {
   return (
     <>
-      <div className="row">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {links.slice(1, 10).map((link, index) => {
           const videoId = getId(link.url);
           const thumbSRC = `https://www.youtube.com/embed/${videoId}`;
           return (
-            <div className="col-sm-6 col-md-4" key={index}>
-              <div className="card h-100 shadow-sm">
-                <div className="ratio ratio-16x9">
+            <div key={index} className="flex flex-col h-full">
+              <div className="bg-white rounded-lg shadow-sm overflow-hidden flex-grow">
+                <div className="relative pt-[56.25%]">
                   <iframe
-                    className="card-img-top"
-                    width="250"
-                    height="141"
+                    className="absolute inset-0 w-full h-full"
                     src={thumbSRC}
                     title="YouTube video player"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
                   ></iframe>
                 </div>
 
-                <div className="card-body d-flex flex-column">
-                  <h4 className="card-title text-primary mb-2">
+                <div className="p-4 flex flex-col flex-grow">
+                  <h4 className="text-lg font-semibold text-blue-600 mb-2">
                     سورة: {link.sura}
                   </h4>
                   <a
                     target="_blank"
-                    className="card-link mt-auto btn btn-primary"
+                    className="mt-auto py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 text-center"
                     href={link.url}
                     rel="noopener noreferrer"
                   >
@@ -45,4 +43,5 @@ const DisplayLinks = ({ links }) => {
     </>
   );
 };
+
 export default DisplayLinks;

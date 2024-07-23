@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #cac8c8;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.card {
+  padding: 0;
+  margin: 1em 0;
+}
+
+.container {
+  width: 95vw;
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+.container {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.links {
+  max-width: 90vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem auto;
+}
+.links li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+  text-align: left;
+}
+.links iframe {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+}
+.links h5 {
+  margin-bottom: 0;
+}
+.links a {
+  color: #645cff;
+  text-transform: capitalize;
+}
