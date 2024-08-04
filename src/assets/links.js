@@ -1,11 +1,5 @@
 const links = [
   {
-    id: '0',
-    sura: 'مقدمة التفسـير',
-    verse: 'الرابط',
-    url: 'https://youtu.be/0sfeOZPG21M',
-  },
-  {
     id: '1',
     sura: 'الفاتحة',
     verse: 'من 1 إلى 5',
