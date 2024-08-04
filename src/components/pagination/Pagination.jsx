@@ -55,6 +55,7 @@ const Pagination = (props) => {
               selected: pageNumber === currentPage,
             })}
             onClick={() => onPageChange(pageNumber)}
+            key={pageNumber}
           >
             {pageNumber}
           </li>

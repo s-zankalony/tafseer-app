@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import OneLink from './OneLink';
 import { getId } from '../assets/functions';
 import Pagination from './pagination/Pagination';
+import Search from './Search';
 
 let PageSize = 9;
 
@@ -14,6 +15,7 @@ const DisplayLinks = ({ links }) => {
   }, [currentPage]);
   return (
     <>
+      <Search />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-2 md:gap-4">
         {currentLinksData.map((link, index) => {
           const videoId = getId(link.url);
