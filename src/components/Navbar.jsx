@@ -1,5 +1,6 @@
 import { FaAlignJustify } from 'react-icons/fa';
 import { MdMenuBook } from 'react-icons/md';
+import quranIcon from '../assets/quran_dg32u6vdkhyz.svg';
 
 const Navbar = () => {
   return (
@@ -48,7 +49,8 @@ const Navbar = () => {
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-green-800">
               تفسير القرآن - للشيخ/ ياسين رشدي
             </span>
-            <MdMenuBook className="text-xl text-green-800 h-full" />
+            {/* <MdMenuBook className="text-xl text-green-800 h-full" /> */}
+            <img src={quranIcon} className="size-8 text-green-800 h-full" />
           </a>
         </div>
       </div>
