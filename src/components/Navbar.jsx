@@ -10,10 +10,7 @@ const Navbar = () => {
           className="w-full md:w-auto flex items-center justify-center"
           id="navbar-default"
         >
-          <div className="m-4">
-            <FaAlignJustify className="text-xl text-green-800" />
-          </div>
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-green-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-green-100 ">
+          <ul className="font-medium flex flex-row p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-green-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-green-100 ">
             <li>
               <a
                 href="/"
