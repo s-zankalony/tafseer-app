@@ -1,18 +1,22 @@
 import { useState } from 'react';
-import data from '../assets/links';
+import linksData from '../assets/links';
 import DisplayLinks from './DisplayLinks';
 import Navbar from './Navbar';
-import Sidebar2 from './Sidebar2';
+import Sidebar from './Sidebar2';
 
 const Home = () => {
-  const [links, setLinks] = useState(data);
+  const [links, setLinks] = useState(linksData);
+  const [currentLinksData, setCurrentLinksData] = useState(linksData);
   return (
     <div className="bg-green-50">
-      <Sidebar2>
+      <Sidebar currentLinksData={currentLinksData}>
         <div className="pt-16 sm:pt-20 md:pt-24">
-          <DisplayLinks links={links} />
+          <DisplayLinks
+            links={links}
+            setCurrentLinksData={setCurrentLinksData}
+          />
         </div>
-      </Sidebar2>
+      </Sidebar>
       <Navbar />
     </div>
   );

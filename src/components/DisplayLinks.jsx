@@ -1,12 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import OneLink from './OneLink';
 import { getId } from '../assets/functions';
 import Pagination from './pagination/Pagination';
 import Search from './Search';
+import playlists from '../assets/playlists';
 
 let PageSize = 9;
 
-const DisplayLinks = ({ links }) => {
+const DisplayLinks = ({ links, setCurrentLinksData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -21,7 +22,9 @@ const DisplayLinks = ({ links }) => {
         .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
         .replace(/[أإآا]/g, 'ا')
         .replace(/[ىي]/g, 'ي')
-        .replace(/ة/g, 'ه');
+        .replace(/ة/g, 'ه')
+        .replace(/سورة/g, '')
+        .replace(/سوره/g, '');
       const normalizedSuraWithoutDiacritics = normalizedSura
         .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
         .replace(/[أإآا]/g, 'ا')
@@ -37,6 +40,10 @@ const DisplayLinks = ({ links }) => {
     const lastPageIndex = firstPageIndex + PageSize;
     return filteredLinks.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, filteredLinks]);
+
+  useEffect(() => {
+    setCurrentLinksData(currentLinksData);
+  }, [currentLinksData, setCurrentLinksData]);
 
   const handleSearch = (term) => {
     setSearchTerm(term);
