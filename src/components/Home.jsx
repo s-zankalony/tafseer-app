@@ -7,9 +7,18 @@ import Sidebar from './Sidebar2';
 const Home = () => {
   const [links, setLinks] = useState(linksData);
   const [currentLinksData, setCurrentLinksData] = useState(linksData);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="bg-green-50">
-      <Sidebar currentLinksData={currentLinksData}>
+      <Sidebar
+        currentLinksData={currentLinksData}
+        isSidebarOpen={isSidebarOpen}
+      >
         <div className="pt-16 sm:pt-20 md:pt-24">
           <DisplayLinks
             links={links}
@@ -17,8 +26,9 @@ const Home = () => {
           />
         </div>
       </Sidebar>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
     </div>
   );
 };
+
 export default Home;

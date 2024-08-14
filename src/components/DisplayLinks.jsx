@@ -12,7 +12,11 @@ const DisplayLinks = ({ links, setCurrentLinksData }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredLinks = useMemo(() => {
-    const trimmedSearchTerm = String(searchTerm).trim().toLowerCase();
+    let trimmedSearchTerm = String(searchTerm).trim().toLowerCase();
+
+    // Remove "سورة" or "سوره" from the beginning of the search term
+    trimmedSearchTerm = trimmedSearchTerm.replace(/^(سورة|سوره)\s*/, '');
+
     if (!trimmedSearchTerm) return links;
 
     return links.filter((link) => {
@@ -22,9 +26,7 @@ const DisplayLinks = ({ links, setCurrentLinksData }) => {
         .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
         .replace(/[أإآا]/g, 'ا')
         .replace(/[ىي]/g, 'ي')
-        .replace(/ة/g, 'ه')
-        .replace(/سورة/g, '')
-        .replace(/سوره/g, '');
+        .replace(/ة/g, 'ه');
       const normalizedSuraWithoutDiacritics = normalizedSura
         .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
         .replace(/[أإآا]/g, 'ا')
