@@ -15,6 +15,10 @@ export const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -26,6 +30,7 @@ export const AppProvider = ({ children }) => {
         setIsSidebarOpen,
         searchTerm,
         setSearchTerm,
+        toggleSidebar,
       }}
     >
       {children}

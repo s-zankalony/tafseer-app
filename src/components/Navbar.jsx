@@ -1,8 +1,11 @@
 import { FaAlignJustify } from 'react-icons/fa';
 import { MdMenuBook } from 'react-icons/md';
 import quranIcon from '../assets/quran_dg32u6vdkhyz.svg';
+import { useGlobalContext } from './context';
 
-const Navbar = ({ toggleSidebar }) => {
+const Navbar = () => {
+  const { toggleSidebar } = useGlobalContext();
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-green-100 border-gray-200">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">

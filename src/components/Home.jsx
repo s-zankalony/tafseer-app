@@ -18,21 +18,14 @@ const Home = () => {
     setIsSidebarOpen,
   } = useGlobalContext();
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
     <div className="bg-green-50">
-      <Sidebar
-        currentLinksData={currentLinksData}
-        isSidebarOpen={isSidebarOpen}
-      >
+      <Sidebar>
         <div className="pt-16 sm:pt-20 md:pt-24">
           <DisplayLinks />
         </div>
       </Sidebar>
-      <Navbar toggleSidebar={toggleSidebar} />
+      <Navbar />
     </div>
   );
 };
