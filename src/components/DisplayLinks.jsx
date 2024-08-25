@@ -21,7 +21,8 @@ const DisplayLinks = () => {
 
     if (!trimmedSearchTerm) return links;
 
-    return links.filter((link) => {
+    // Create a helper function to calculate relevance score
+    const getRelevanceScore = (link) => {
       const normalizedSura = String(link.sura).toLowerCase();
       // Remove diacritics and normalize Arabic characters
       const normalizedSearchTerm = trimmedSearchTerm
@@ -35,8 +36,25 @@ const DisplayLinks = () => {
         .replace(/[ىي]/g, 'ي')
         .replace(/ة/g, 'ه');
 
-      return normalizedSuraWithoutDiacritics.includes(normalizedSearchTerm);
-    });
+      // Check if it's a single-letter search and matches a single-letter surah name
+      if (
+        normalizedSearchTerm.length === 1 &&
+        normalizedSuraWithoutDiacritics.length === 1
+      ) {
+        return normalizedSuraWithoutDiacritics === normalizedSearchTerm ? 2 : 0;
+      }
+
+      // Regular matching
+      return normalizedSuraWithoutDiacritics.includes(normalizedSearchTerm)
+        ? 1
+        : 0;
+    };
+
+    // Filter and sort the links based on relevance
+    return links
+      .map((link) => ({ ...link, relevance: getRelevanceScore(link) }))
+      .filter((link) => link.relevance > 0)
+      .sort((a, b) => b.relevance - a.relevance);
   }, [links, searchTerm]);
 
   const currentLinksData = useMemo(() => {
