@@ -8,6 +8,9 @@ import { useGlobalContext } from './context';
 
 let PageSize = 9;
 
+// List of single-letter surah names
+const singleLetterSurahs = ['ق', 'ص'];
+
 const DisplayLinks = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { setCurrentLinksData, links, searchTerm, setSearchTerm } =
@@ -21,38 +24,54 @@ const DisplayLinks = () => {
 
     if (!trimmedSearchTerm) return links;
 
-    // Create a helper function to calculate relevance score
-    const getRelevanceScore = (link) => {
-      const normalizedSura = String(link.sura).toLowerCase();
-      // Remove diacritics and normalize Arabic characters
-      const normalizedSearchTerm = trimmedSearchTerm
+    // Normalize the search term
+    const normalizedSearchTerm = trimmedSearchTerm
+      .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
+      .replace(/[أإآا]/g, 'ا')
+      .replace(/[ىي]/g, 'ي')
+      .replace(/ة/g, 'ه');
+
+    // Function to normalize surah name
+    const normalizeSuraName = (name) => {
+      return name
+        .toLowerCase()
         .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
         .replace(/[أإآا]/g, 'ا')
         .replace(/[ىي]/g, 'ي')
         .replace(/ة/g, 'ه');
-      const normalizedSuraWithoutDiacritics = normalizedSura
-        .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
-        .replace(/[أإآا]/g, 'ا')
-        .replace(/[ىي]/g, 'ي')
-        .replace(/ة/g, 'ه');
-
-      // Check if it's a single-letter search and matches a single-letter surah name
-      if (
-        normalizedSearchTerm.length === 1 &&
-        normalizedSuraWithoutDiacritics.length === 1
-      ) {
-        return normalizedSuraWithoutDiacritics === normalizedSearchTerm ? 2 : 0;
-      }
-
-      // Regular matching
-      return normalizedSuraWithoutDiacritics.includes(normalizedSearchTerm)
-        ? 1
-        : 0;
     };
 
-    // Filter and sort the links based on relevance
+    // Filter and sort the links
     return links
-      .map((link) => ({ ...link, relevance: getRelevanceScore(link) }))
+      .map((link) => {
+        const normalizedSura = normalizeSuraName(link.sura);
+        let relevance = 0;
+
+        if (normalizedSearchTerm.length === 1) {
+          // For single-letter search
+          if (
+            singleLetterSurahs.includes(link.sura) &&
+            normalizedSura === normalizedSearchTerm
+          ) {
+            relevance = 3; // Highest priority for exact single-letter match
+          } else if (normalizedSura.startsWith(normalizedSearchTerm)) {
+            relevance = 2; // High priority for surahs starting with the letter
+          } else if (normalizedSura.includes(normalizedSearchTerm)) {
+            relevance = 1; // Lower priority for surahs containing the letter
+          }
+        } else {
+          // For multi-letter search
+          if (normalizedSura === normalizedSearchTerm) {
+            relevance = 3; // Exact match
+          } else if (normalizedSura.startsWith(normalizedSearchTerm)) {
+            relevance = 2; // Starts with search term
+          } else if (normalizedSura.includes(normalizedSearchTerm)) {
+            relevance = 1; // Contains search term
+          }
+        }
+
+        return { ...link, relevance };
+      })
       .filter((link) => link.relevance > 0)
       .sort((a, b) => b.relevance - a.relevance);
   }, [links, searchTerm]);
