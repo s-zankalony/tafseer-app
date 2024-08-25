@@ -4,12 +4,16 @@ import { getId } from '../assets/functions';
 import Pagination from './pagination/Pagination';
 import Search from './Search';
 import playlists from '../assets/playlists';
+import { useGlobalContext } from './context';
 
 let PageSize = 9;
 
-const DisplayLinks = ({ links, setCurrentLinksData }) => {
+const DisplayLinks = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  // const [searchTerm, setSearchTerm] = useState('');
+
+  const { setCurrentLinksData, links, searchTerm, setSearchTerm } =
+    useGlobalContext();
 
   const filteredLinks = useMemo(() => {
     let trimmedSearchTerm = String(searchTerm).trim().toLowerCase();

@@ -2,12 +2,14 @@ import { FaAlignJustify } from 'react-icons/fa';
 import sidebarImage from '../assets/sidebar.gif';
 import playlists from '../assets/playlists';
 import { useState } from 'react';
+import { useGlobalContext } from './context';
 
 const SPECIAL_PLAYLIST_ID = 87;
 const SPECIAL_ID_RANGE_START = 576;
 const SPECIAL_ID_RANGE_END = 600;
 
-const Sidebar2 = ({ children, currentLinksData, isSidebarOpen }) => {
+const Sidebar2 = ({ children }) => {
+  const { currentLinksData, isSidebarOpen } = useGlobalContext();
   const filteredPlaylists = playlists.filter((playlist) => {
     const hasSpecialIdRange = currentLinksData.some((link) => {
       const linkId = parseInt(link.id, 10);

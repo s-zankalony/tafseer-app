@@ -1,22 +1,25 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import debounce from 'lodash/debounce';
+import { useGlobalContext } from './context';
 
-const Search = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const Search = () => {
+  const { searchTerm, setSearchTerm } = useGlobalContext();
 
-  // Debounce the search to avoid too many updates
-  const debouncedSearch = useCallback(
+  // Debounce the setSearchTerm to avoid too many updates
+  const debouncedSetSearchTerm = useCallback(
     debounce((term) => {
-      onSearch(term);
-    }, 300),
-    [onSearch]
+      setSearchTerm(term);
+    }, 100), // Reduced debounce delay to 100 milliseconds
+    [setSearchTerm]
   );
 
-  const handleChange = (e) => {
-    const term = String(e.target.value);
-    setSearchTerm(term);
-    debouncedSearch(term);
-  };
+  const handleChange = useCallback(
+    (e) => {
+      const term = String(e.target.value);
+      debouncedSetSearchTerm(term);
+    },
+    [debouncedSetSearchTerm]
+  );
 
   return (
     <div className="m-4 p-4">
