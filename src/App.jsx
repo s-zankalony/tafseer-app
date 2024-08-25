@@ -1,7 +1,12 @@
-import Home from './components/Home';
+import DisplayLinks from './components/DisplayLinks';
+import Layout from './components/Layout';
 
 function App() {
-  return <Home />;
+  return (
+    <Layout>
+      <DisplayLinks />
+    </Layout>
+  );
 }
 
 export default App;
