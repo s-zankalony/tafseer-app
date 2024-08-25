@@ -10,8 +10,6 @@ let PageSize = 9;
 
 const DisplayLinks = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  // const [searchTerm, setSearchTerm] = useState('');
-
   const { setCurrentLinksData, links, searchTerm, setSearchTerm } =
     useGlobalContext();
 
