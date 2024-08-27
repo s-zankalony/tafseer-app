@@ -23,8 +23,8 @@ const Navbar = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? 'block py-2 px-3 text-green-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0'
-                    : 'block py-2 px-3 text-green-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0'
+                    ? 'block py-2 px-4 bg-green-700 text-green-100 rounded-md hover:bg-green-600 transition-colors duration-200'
+                    : 'block py-2 px-4 text-green-700 rounded-md hover:bg-green-200 transition-colors duration-200'
                 }
                 aria-current="page"
               >
@@ -36,8 +36,8 @@ const Navbar = () => {
                 to="/Playlists"
                 className={({ isActive }) =>
                   isActive
-                    ? 'block py-2 px-3 text-green-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0'
-                    : 'block py-2 px-3 text-green-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0'
+                    ? 'block py-2 px-4 bg-green-700 text-green-100 rounded-md hover:bg-green-600 transition-colors duration-200'
+                    : 'block py-2 px-4 text-green-700 rounded-md hover:bg-green-200 transition-colors duration-200'
                 }
               >
                 قوائم التشغيل
@@ -48,8 +48,8 @@ const Navbar = () => {
                 to="/about"
                 className={({ isActive }) =>
                   isActive
-                    ? 'block py-2 px-3 text-green-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0'
-                    : 'block py-2 px-3 text-green-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-500 md:p-0'
+                    ? 'block py-2 px-4 bg-green-700 text-green-100 rounded-md hover:bg-green-600 transition-colors duration-200'
+                    : 'block py-2 px-4 text-green-700 rounded-md hover:bg-green-200 transition-colors duration-200'
                 }
               >
                 عن الموقع
@@ -65,7 +65,11 @@ const Navbar = () => {
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-green-800">
               تفسير القرآن - للشيخ/ ياسين رشدي
             </span>
-            <img src={quranIcon} className="size-8 text-green-800 h-full" />
+            <img
+              src={quranIcon}
+              className="size-8 text-green-800 h-full"
+              alt="Quran Icon"
+            />
           </NavLink>
         </div>
       </div>
