@@ -5,9 +5,9 @@ const Layout = ({ children }) => {
   return (
     <div className="bg-green-50">
       <Sidebar>
-        <div className="pt-16 sm:pt-20 md:pt-24">
+        <div className="pt-32 sm:pt-36 md:pt-24">
           {' '}
-          {/* Reduced left margin */}
+          {/* Increased padding-top */}
           {children}
         </div>
       </Sidebar>

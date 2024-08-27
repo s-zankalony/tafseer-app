@@ -8,69 +8,69 @@ const Navbar = () => {
   const { toggleSidebar } = useGlobalContext();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-green-100 border-gray-200">
-      <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
-        <button className="text-green-700 md:hidden" onClick={toggleSidebar}>
-          <FaAlignJustify size={24} />
-        </button>
-        <div
-          className="w-full md:w-auto flex items-center justify-center"
-          id="navbar-default"
-        >
-          <ul className="font-medium flex flex-row p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-green-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-green-100">
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'block py-2 px-4 bg-green-700 text-green-100 rounded-md hover:bg-green-600 transition-colors duration-200'
-                    : 'block py-2 px-4 text-green-700 rounded-md hover:bg-green-200 transition-colors duration-200'
-                }
-                aria-current="page"
-              >
-                الرئيسية
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/Playlists"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'block py-2 px-4 bg-green-700 text-green-100 rounded-md hover:bg-green-600 transition-colors duration-200'
-                    : 'block py-2 px-4 text-green-700 rounded-md hover:bg-green-200 transition-colors duration-200'
-                }
-              >
-                قوائم التشغيل
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'block py-2 px-4 bg-green-700 text-green-100 rounded-md hover:bg-green-600 transition-colors duration-200'
-                    : 'block py-2 px-4 text-green-700 rounded-md hover:bg-green-200 transition-colors duration-200'
-                }
-              >
-                عن الموقع
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-        <div className="hidden md:block" id="navbar-title">
-          <NavLink
-            to="#"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-          >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-green-800">
-              تفسير القرآن - للشيخ/ ياسين رشدي
-            </span>
-            <img
-              src={quranIcon}
-              className="size-8 text-green-800 h-full"
-              alt="Quran Icon"
-            />
-          </NavLink>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-green-100 border-gray-200 shadow-md">
+      <div className="max-w-screen-xl mx-auto p-2 sm:p-4">
+        <div className="flex flex-col sm:flex-row-reverse sm:items-center sm:justify-between">
+          <div className="flex items-center justify-between mb-2 sm:mb-0">
+            <button
+              className="text-green-700 sm:hidden order-first"
+              onClick={toggleSidebar}
+            >
+              <FaAlignJustify size={24} />
+            </button>
+            <div className="flex items-center justify-center sm:justify-end flex-grow sm:flex-grow-0">
+              <img
+                src={quranIcon}
+                className="h-6 sm:h-8 ml-2"
+                alt="Quran Icon"
+              />
+              <span className="text-lg sm:text-xl font-semibold whitespace-nowrap text-green-800">
+                تفسير القرآن - للشيخ/ ياسين رشدي
+              </span>
+            </div>
+            <div className="w-8 sm:hidden"></div>
+          </div>
+          <div className="w-full sm:w-auto" id="navbar-default">
+            <ul className="font-medium flex justify-center sm:justify-start space-x-4 space-x-reverse">
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
+                  }
+                  aria-current="page"
+                >
+                  الرئيسية
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/Playlists"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
+                  }
+                >
+                  قوائم التشغيل
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
+                  }
+                >
+                  عن الموقع
+                </NavLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
