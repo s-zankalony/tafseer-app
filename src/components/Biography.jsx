@@ -1,8 +1,17 @@
+import React from 'react';
+import { biography } from '../assets/sheikhBiography';
+
 const Biography = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-green-800 text-center p-4">
-      <h1 className="text-3xl font-bold mb-4">نبذة عن الشيخ</h1>
-      <h4 className="text-xl">الصفحة لا تزال تحت الإنشاء</h4>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-green-50 text-green-800 p-4">
+      <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="px-6 py-4">
+          <div
+            className="space-y-4 text-right"
+            dangerouslySetInnerHTML={{ __html: biography }}
+          />
+        </div>
+      </div>
     </div>
   );
 };
