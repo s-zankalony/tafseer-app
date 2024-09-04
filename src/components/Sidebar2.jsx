@@ -1,8 +1,8 @@
 import { FaAlignJustify } from 'react-icons/fa';
 import sidebarImage from '../assets/sidebar.gif';
 import playlists from '../assets/playlists';
-import { useContext, useState } from 'react';
-import { useGlobalContext, AppContext } from './context';
+import { useContext, useMemo } from 'react';
+import { AppContext } from './context';
 import { NavLink } from 'react-router-dom';
 
 const SPECIAL_PLAYLIST_ID = 87;
@@ -10,25 +10,46 @@ const SPECIAL_ID_RANGE_START = 576;
 const SPECIAL_ID_RANGE_END = 600;
 
 const Sidebar2 = ({ children }) => {
-  const { currentLinksData, isSidebarOpen } = useContext(AppContext);
-  const filteredPlaylists = playlists.filter((playlist) => {
+  const { currentLinksData, isSidebarOpen, normalizeString } =
+    useContext(AppContext);
+
+  const filteredPlaylists = useMemo(() => {
     const hasSpecialIdRange = currentLinksData.some((link) => {
       const linkId = parseInt(link.id, 10);
       return linkId >= SPECIAL_ID_RANGE_START && linkId <= SPECIAL_ID_RANGE_END;
     });
 
-    if (hasSpecialIdRange && playlist.id === SPECIAL_PLAYLIST_ID) {
-      return true;
-    }
+    return playlists.filter((playlist) => {
+      if (hasSpecialIdRange && playlist.id === SPECIAL_PLAYLIST_ID) {
+        return true;
+      }
 
-    return currentLinksData.some((link) => link.sura === playlist.sura);
-  });
+      return currentLinksData.some((link) => {
+        const normalizedSura = normalizeString(link.sura);
+        const normalizedPlaylistSura = normalizeString(playlist.sura);
+
+        // Special case for سبأ
+        if (
+          playlist.sura === 'سـبأ' &&
+          (link.sura === 'سـبأ' || normalizedSura.startsWith('سب'))
+        ) {
+          return true;
+        }
+
+        return (
+          normalizedSura === normalizedPlaylistSura ||
+          normalizedSura.startsWith(normalizedPlaylistSura)
+        );
+      });
+    });
+  }, [currentLinksData, normalizeString]);
+
+  // Rest of the component remains the same
 
   return (
     <div className="flex">
       <div className="flex-1">
-        <div className="p-4 sm:mr-56">{children}</div>{' '}
-        {/* Reduced right margin */}
+        <div className="p-4 sm:mr-56">{children}</div>
       </div>
       <aside
         className={`fixed top-18 right-0 w-full sm:w-56 h-screen transition-transform ${
@@ -69,18 +90,16 @@ const Sidebar2 = ({ children }) => {
                 قوائم التشغيل بالسور:
               </h3>
             </li>
-            {filteredPlaylists.map((list) => {
-              return (
-                <li
-                  key={list.id}
-                  className="flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer"
-                >
-                  <a href={list.url} target="_blank" rel="noopener noreferrer">
-                    {list.sura}
-                  </a>
-                </li>
-              );
-            })}
+            {filteredPlaylists.map((list) => (
+              <li
+                key={list.id}
+                className="flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer"
+              >
+                <a href={list.url} target="_blank" rel="noopener noreferrer">
+                  {list.sura}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </aside>

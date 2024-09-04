@@ -35,58 +35,65 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   const filteredLinks = useMemo(() => {
-    let trimmedSearchTerm = normalizeString(state.searchTerm.trim());
+    let trimmedSearchTerm = state.searchTerm.trim();
     trimmedSearchTerm = trimmedSearchTerm.replace(/^(سورة|سوره)\s*/, '');
 
     if (!trimmedSearchTerm) return state.links;
 
+    const normalizedSearchTerm = normalizeString(trimmedSearchTerm);
     const singleLetterSurahs = ['ق', 'ص'];
 
-    return state.links
-      .filter((link) => {
-        const normalizedSura = normalizeString(link.sura);
+    const exactMatches = [];
+    const partialMatches = [];
 
-        if (trimmedSearchTerm.length === 1) {
-          return (
-            (singleLetterSurahs.includes(link.sura) &&
-              normalizedSura === trimmedSearchTerm) ||
-            normalizedSura.startsWith(trimmedSearchTerm)
-          );
-        } else {
-          return normalizedSura.includes(trimmedSearchTerm);
-        }
-      })
-      .sort((a, b) => {
-        const aNormalizedSura = normalizeString(a.sura);
-        const bNormalizedSura = normalizeString(b.sura);
+    state.links.forEach((link) => {
+      const normalizedSura = normalizeString(link.sura);
+      const originalSura = link.sura.replace(/^(سورة|سوره)\s*/, '');
 
-        // Handle ق and ص specially
-        if (
-          singleLetterSurahs.includes(a.sura) &&
-          singleLetterSurahs.includes(b.sura)
-        ) {
-          return state.links.indexOf(a) - state.links.indexOf(b);
-        }
+      // Special case for سبأ
+      if (
+        originalSura === 'سـبأ' &&
+        (trimmedSearchTerm === 'سبأ' ||
+          trimmedSearchTerm === 'سبا' ||
+          normalizedSearchTerm.startsWith('سب'))
+      ) {
+        exactMatches.push(link);
+        return;
+      }
 
-        if (
-          aNormalizedSura === trimmedSearchTerm &&
-          bNormalizedSura === trimmedSearchTerm
-        ) {
-          return state.links.indexOf(a) - state.links.indexOf(b);
+      // Handle single-letter surahs
+      if (singleLetterSurahs.includes(trimmedSearchTerm)) {
+        if (originalSura === trimmedSearchTerm) {
+          exactMatches.push(link);
+        } else if (normalizedSura.includes(normalizedSearchTerm)) {
+          partialMatches.push(link);
         }
-        if (aNormalizedSura === trimmedSearchTerm) return -1;
-        if (bNormalizedSura === trimmedSearchTerm) return 1;
-        if (
-          aNormalizedSura.startsWith(trimmedSearchTerm) &&
-          bNormalizedSura.startsWith(trimmedSearchTerm)
-        ) {
-          return state.links.indexOf(a) - state.links.indexOf(b);
-        }
-        if (aNormalizedSura.startsWith(trimmedSearchTerm)) return -1;
-        if (bNormalizedSura.startsWith(trimmedSearchTerm)) return 1;
-        return state.links.indexOf(a) - state.links.indexOf(b);
-      });
+        return;
+      }
+
+      // General case
+      if (normalizedSura.startsWith(normalizedSearchTerm)) {
+        exactMatches.push(link);
+      } else if (normalizedSura.includes(normalizedSearchTerm)) {
+        partialMatches.push(link);
+      }
+    });
+
+    // Sort exact matches based on their original order in state.links
+    exactMatches.sort(
+      (a, b) => state.links.indexOf(a) - state.links.indexOf(b)
+    );
+
+    // Sort partial matches based on their original order in state.links
+    partialMatches.sort(
+      (a, b) => state.links.indexOf(a) - state.links.indexOf(b)
+    );
+
+    // Combine exact and partial matches
+    return [...exactMatches, ...partialMatches];
   }, [state.links, state.searchTerm, normalizeString]);
+
+  // ... (rest of the code remains the same)
 
   const currentLinksData = useMemo(() => {
     const firstPageIndex = (state.currentPage - 1) * PAGE_SIZE;
@@ -118,12 +125,15 @@ export const AppProvider = ({ children }) => {
         setCurrentPage: (payload) =>
           dispatch({ type: 'SET_CURRENT_PAGE', payload }),
         toggleSidebar: () => dispatch({ type: 'TOGGLE_SIDEBAR' }),
+        normalizeString,
       }}
     >
       {children}
     </AppContext.Provider>
   );
 };
+
+// ... (rest of the file remains the same)
 
 export const useGlobalContext = () => {
   return useContext(AppContext);
