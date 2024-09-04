@@ -78,9 +78,9 @@ export const biography = `
 <p>والجدير بالذكر أنَّ كل هذه الكتب تُهدى ولا تُباع، وجميعها يمكن تحميله من الموقع الإلكتروني، أو من خلال التطبيقات الخاصة بأجهزة التليفونات الذكية.</p>
 
 <h2 class="text-2xl font-semibold mt-6 mb-4">التراث والموارد</h2>
-<p>يمكن الحصول على تراث فضيلته المرئى والمسموع والمطبوع من لجنة نشر الثقافة بجمعية المواساة الإسلامية ومقرها مسجد المواساة بالإسكندرية.</p>
+<p>يمكن الحصول على تراث فضيلته المرئي والمسموع والمطبوع من لجنة نشر الثقافة بجمعية المواساة الإسلامية ومقرها مسجد المواساة بالإسكندرية.</p>
 
-<p>مع ملاحظة أنّه يوجد نسخة من جميع خطب ومجالس فضيلته على موقع الجمعية على الانترنت: <a href="http://www.almouassa.com" target="_blank" rel="noopener noreferrer">www.almouassa.com</a></p>
+<p>مع ملاحظة أنّه يوجد نسخة من جميع خطب ومجالس وكتب فضيلته على موقع الجمعية على الانترنت: <a href="http://www.almouassa.com" target="_blank" rel="noopener noreferrer">www.almouassa.com</a></p>
 
 <p>وعلى موقع الشيخ على الانترنت: <a href="https://yassinroushdy.com" target="_blank" rel="noopener noreferrer">https://yassinroushdy.com</a></p>
 
