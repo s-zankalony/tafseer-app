@@ -5,7 +5,7 @@ import { useGlobalContext } from './context';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const { toggleSidebar } = useGlobalContext();
+  const { toggleSidebar, resetSearchTerm } = useGlobalContext();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-green-100 border-gray-200 shadow-md">
@@ -18,16 +18,18 @@ const Navbar = () => {
             >
               <FaAlignJustify size={24} />
             </button>
-            <div className="flex items-center justify-center sm:justify-end flex-grow sm:flex-grow-0">
-              <img
-                src={quranIcon}
-                className="h-6 sm:h-8 ml-2"
-                alt="Quran Icon"
-              />
-              <span className="text-lg sm:text-xl font-semibold whitespace-nowrap text-green-800">
-                تفسير القرآن - للشيخ/ ياسين رشدي
-              </span>
-            </div>
+            <NavLink to="/" aria-current="page" onClick={resetSearchTerm}>
+              <div className="flex items-center justify-center sm:justify-end flex-grow sm:flex-grow-0">
+                <img
+                  src={quranIcon}
+                  className="h-6 sm:h-8 ml-2"
+                  alt="Quran Icon"
+                />
+                <span className="text-lg sm:text-xl font-semibold whitespace-nowrap text-green-800">
+                  تفسير القرآن - للشيخ/ ياسين رشدي
+                </span>
+              </div>
+            </NavLink>
             <div className="w-8 sm:hidden"></div>
           </div>
           <div className="w-full sm:w-auto" id="navbar-default">
@@ -41,6 +43,7 @@ const Navbar = () => {
                       : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
                   }
                   aria-current="page"
+                  onClick={resetSearchTerm}
                 >
                   الرئيسية
                 </NavLink>

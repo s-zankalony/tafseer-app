@@ -126,6 +126,8 @@ export const AppProvider = ({ children }) => {
           dispatch({ type: 'SET_CURRENT_PAGE', payload }),
         toggleSidebar: () => dispatch({ type: 'TOGGLE_SIDEBAR' }),
         normalizeString,
+        resetSearchTerm: () =>
+          dispatch({ type: 'SET_SEARCH_TERM', payload: '' }),
       }}
     >
       {children}
