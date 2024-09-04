@@ -13,7 +13,7 @@ const TafseerIntroPage = () => {
         <h1 className="text-4xl font-bold mb-6 text-green-600">
           مقدمة التفسير
         </h1>
-        <h2 className="text-2xl mb-6 text-green-500">{introData.sura}</h2>
+        {/* <h2 className="text-2xl mb-6 text-green-500">{introData.sura}</h2> */}
         <div className="relative group cursor-pointer mb-6">
           <img
             src={thumbnailUrl}
