@@ -3,7 +3,7 @@ import sidebarImage from '../assets/sidebar.gif';
 import playlists from '../assets/playlists';
 import { useContext, useMemo } from 'react';
 import { AppContext } from './context';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const SPECIAL_PLAYLIST_ID = 87;
 const SPECIAL_ID_RANGE_START = 576;
@@ -12,6 +12,7 @@ const SPECIAL_ID_RANGE_END = 600;
 const Sidebar2 = ({ children }) => {
   const { currentLinksData, isSidebarOpen, normalizeString } =
     useContext(AppContext);
+  const location = useLocation();
 
   const filteredPlaylists = useMemo(() => {
     const hasSpecialIdRange = currentLinksData.some((link) => {
@@ -43,8 +44,6 @@ const Sidebar2 = ({ children }) => {
       });
     });
   }, [currentLinksData, normalizeString]);
-
-  // Rest of the component remains the same
 
   return (
     <div className="flex">
@@ -85,21 +84,29 @@ const Sidebar2 = ({ children }) => {
             <li className="my-4">
               <hr className="border-t border-green-300" />
             </li>
-            <li className="mb-2">
-              <h3 className="text-lg font-semibold text-green-800 px-2 py-1 bg-green-200 rounded-md">
-                قوائم التشغيل بالسور:
-              </h3>
-            </li>
-            {filteredPlaylists.map((list) => (
-              <li
-                key={list.id}
-                className="flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer"
-              >
-                <a href={list.url} target="_blank" rel="noopener noreferrer">
-                  {list.sura}
-                </a>
-              </li>
-            ))}
+            {location.pathname === '/' && (
+              <>
+                <li className="mb-2">
+                  <h3 className="text-lg font-semibold text-green-800 px-2 py-1 bg-green-200 rounded-md">
+                    قوائم التشغيل بالسور:
+                  </h3>
+                </li>
+                {filteredPlaylists.map((list) => (
+                  <li
+                    key={list.id}
+                    className="flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer"
+                  >
+                    <a
+                      href={list.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {list.sura}
+                    </a>
+                  </li>
+                ))}
+              </>
+            )}
           </ul>
         </div>
       </aside>

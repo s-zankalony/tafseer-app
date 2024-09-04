@@ -9,7 +9,7 @@ const TafseerIntroPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-50 to-green-100 text-green-800 text-center p-8">
-      <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full">
+      <div className=" rounded-lg shadow-xl p-8 max-w-2xl w-full">
         <h1 className="text-4xl font-bold mb-6 text-green-600">
           مقدمة التفسير
         </h1>
