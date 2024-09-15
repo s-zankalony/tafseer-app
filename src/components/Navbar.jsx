@@ -5,7 +5,7 @@ import { useGlobalContext } from './context';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const { toggleSidebar, resetSearchTerm } = useGlobalContext();
+  const { toggleSidebar, resetSearchTerm, isSidebarOpen } = useGlobalContext();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-green-100 border-gray-200 shadow-md">
@@ -23,7 +23,7 @@ const Navbar = () => {
               aria-current="page"
               onClick={() => {
                 resetSearchTerm();
-                toggleSidebar();
+                isSidebarOpen && toggleSidebar();
               }}
             >
               <div className="flex items-center justify-center sm:justify-end flex-grow sm:flex-grow-0">
@@ -52,7 +52,7 @@ const Navbar = () => {
                   aria-current="page"
                   onClick={() => {
                     resetSearchTerm();
-                    toggleSidebar();
+                    isSidebarOpen && toggleSidebar();
                   }}
                 >
                   الرئيسية
@@ -66,7 +66,7 @@ const Navbar = () => {
                       ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
                       : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
                   }
-                  onClick={toggleSidebar}
+                  onClick={() => isSidebarOpen && toggleSidebar()}
                 >
                   قوائم التشغيل
                 </NavLink>
@@ -79,7 +79,7 @@ const Navbar = () => {
                       ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
                       : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
                   }
-                  onClick={toggleSidebar}
+                  onClick={() => isSidebarOpen && toggleSidebar()}
                 >
                   عن الموقع
                 </NavLink>

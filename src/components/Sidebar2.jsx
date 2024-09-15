@@ -58,7 +58,7 @@ const Sidebar2 = ({ children }) => {
       </div>
       <aside
         className={`fixed top-18 right-0 w-full sm:w-56 h-screen transition-transform duration-300 ease-in-out ${
-          isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'
+          isSidebarOpen ? 'translate-x-0' : 'translate-x-full sm:translate-x-0'
         }`}
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-green-100">
