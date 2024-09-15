@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
         dir="ltr"
         className="bg-green-800 text-white py-4 border-t-2 border-green-600 direction-ltr"
       >
-        <div className="mr-4 md:mr-64 ml-4 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+        <div className="mr-4 md:mr-64 lg:mr-56 ml-4 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
           <div className="mb-2 sm:mb-0 w-full sm:w-auto">
             <p className="text-sm font-semibold">
               &copy; {new Date().getFullYear()} Sameh El Zankalony
