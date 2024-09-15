@@ -18,7 +18,14 @@ const Navbar = () => {
             >
               <FaAlignJustify size={24} />
             </button>
-            <NavLink to="/" aria-current="page" onClick={resetSearchTerm}>
+            <NavLink
+              to="/"
+              aria-current="page"
+              onClick={() => {
+                resetSearchTerm();
+                toggleSidebar();
+              }}
+            >
               <div className="flex items-center justify-center sm:justify-end flex-grow sm:flex-grow-0">
                 <img
                   src={quranIcon}
@@ -43,7 +50,10 @@ const Navbar = () => {
                       : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
                   }
                   aria-current="page"
-                  onClick={resetSearchTerm}
+                  onClick={() => {
+                    resetSearchTerm();
+                    toggleSidebar();
+                  }}
                 >
                   الرئيسية
                 </NavLink>
@@ -56,6 +66,7 @@ const Navbar = () => {
                       ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
                       : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
                   }
+                  onClick={toggleSidebar}
                 >
                   قوائم التشغيل
                 </NavLink>
@@ -68,6 +79,7 @@ const Navbar = () => {
                       ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
                       : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
                   }
+                  onClick={toggleSidebar}
                 >
                   عن الموقع
                 </NavLink>

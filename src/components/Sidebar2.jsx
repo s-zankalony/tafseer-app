@@ -10,7 +10,7 @@ const SPECIAL_ID_RANGE_START = 576;
 const SPECIAL_ID_RANGE_END = 600;
 
 const Sidebar2 = ({ children }) => {
-  const { currentLinksData, isSidebarOpen, normalizeString } =
+  const { currentLinksData, isSidebarOpen, normalizeString, toggleSidebar } =
     useContext(AppContext);
   const location = useLocation();
 
@@ -45,13 +45,19 @@ const Sidebar2 = ({ children }) => {
     });
   }, [currentLinksData, normalizeString]);
 
+  const handleLinkClick = () => {
+    if (window.innerWidth < 640) {
+      toggleSidebar();
+    }
+  };
+
   return (
     <div className="flex">
       <div className="flex-1">
         <div className="p-4 sm:mr-56">{children}</div>
       </div>
       <aside
-        className={`fixed top-18 right-0 w-full sm:w-56 h-screen transition-transform ${
+        className={`fixed top-18 right-0 w-full sm:w-56 h-screen transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'
         }`}
       >
@@ -65,6 +71,7 @@ const Sidebar2 = ({ children }) => {
                     ? 'flex items-center p-2 text-green-100 bg-green-700 rounded-lg hover:bg-green-600 group cursor-pointer'
                     : 'flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer'
                 }
+                onClick={handleLinkClick}
               >
                 نبذة عن الشيخ
               </NavLink>
@@ -77,6 +84,7 @@ const Sidebar2 = ({ children }) => {
                     ? 'flex items-center p-2 text-green-100 bg-green-700 rounded-lg hover:bg-green-600 group cursor-pointer'
                     : 'flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer'
                 }
+                onClick={handleLinkClick}
               >
                 مقدمة التفسير
               </NavLink>
@@ -95,6 +103,7 @@ const Sidebar2 = ({ children }) => {
                   <li
                     key={list.id}
                     className="flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer"
+                    onClick={handleLinkClick}
                   >
                     <a
                       href={list.url}
