@@ -1,21 +1,22 @@
 import Navbar from './Navbar';
 import Sidebar from './Sidebar2';
 
+// Layout.jsx
 const Layout = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen bg-green-50">
+    <div className="flex flex-col min-h-screen bg-green-50 w-full overflow-x-hidden">
       <Sidebar>
-        <div className="flex-grow pt-32 sm:pt-36 md:pt-24 pb-16">
+        <div className="flex-grow pt-32 sm:pt-36 md:pt-24 pb-16 w-full">
           {children}
         </div>
       </Sidebar>
       <Navbar />
       <footer
         dir="ltr"
-        className="bg-green-800 text-white py-4 border-t-2 border-green-600 direction-ltr"
+        className="bg-green-800 text-white py-4 border-t-2 border-green-600 w-full relative z-10"
       >
-        <div className="mr-4 md:mr-64 lg:mr-56 ml-4 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
-          <div className="mb-2 sm:mb-0 w-full sm:w-auto">
+        <div className="mx-4 sm:mr-60 sm:ml-4 flex flex-col sm:flex-row justify-between items-center">
+          <div className="mb-2 sm:mb-0">
             <p className="text-sm font-semibold">
               &copy; {new Date().getFullYear()} Sameh El Zankalony
             </p>
@@ -23,7 +24,7 @@ const Layout = ({ children }) => {
               Tafseer Al-Quran Al-Kareem - Sheikh Yassin Roushdy
             </p>
           </div>
-          <div className="flex items-center justify-center w-full sm:w-auto">
+          <div className="flex items-center">
             <span className="mr-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

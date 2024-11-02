@@ -57,7 +57,7 @@ const Sidebar2 = ({ children }) => {
         <div className="p-4 sm:mr-56">{children}</div>
       </div>
       <aside
-        className={`fixed top-18 right-0 w-full sm:w-56 h-screen transition-transform duration-300 ease-in-out ${
+        className={`fixed top-18 right-0 w-full sm:w-56 h-screen bg-white shadow-lg transition-transform duration-300 ease-in-out z-50 ${
           isSidebarOpen ? 'translate-x-0' : 'translate-x-full sm:translate-x-0'
         }`}
       >
