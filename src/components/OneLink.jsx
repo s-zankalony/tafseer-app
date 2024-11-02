@@ -1,22 +1,25 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { VideoModal } from './VideoModal';
 
-// Modified OneLink.jsx
-export default function OneLink({ thumbSRC, link }) {
+const OneLink = ({ thumbSRC, link }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const videoId = thumbSRC.split('/').pop();
+
+  const thumbnailUrl = imageError
+    ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
+    : `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   return (
     <>
-      <div className="flex flex-col h-full bg-green-200 rounded-lg shadow-sm overflow-hidden">
+      <div className="flex flex-col h-full bg-green-200 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
         <div className="relative pt-[56.25%]">
           <img
-            src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} // Changed from maxresdefault.jpg
-            alt="Video thumbnail"
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => {
-              e.target.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`; // Fallback
-            }}
+            src={thumbnailUrl}
+            alt={`Thumbnail for ${link.sura}`}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+            onError={() => setImageError(true)}
           />
           <button
             onClick={() => setIsPlaying(true)}
@@ -48,4 +51,6 @@ export default function OneLink({ thumbSRC, link }) {
       )}
     </>
   );
-}
+};
+
+export default memo(OneLink);
