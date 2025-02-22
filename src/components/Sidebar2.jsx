@@ -65,8 +65,8 @@ const Sidebar2 = ({ children }) => {
   }, [toggleSidebar]);
 
   return (
-    <div className="flex min-h-screen">
-      <div className="flex-1 w-full">{children}</div>
+    <div className="flex min-h-screen relative">
+      <div className="flex-1 w-full sm:pr-56">{children}</div>
       <aside
         className={`fixed top-16 right-0 w-full sm:w-56 h-[calc(100vh-4rem)] transition-transform duration-300 ease-in-out z-50 ${
           isSidebarOpen ? 'translate-x-0' : 'translate-x-full sm:translate-x-0'
