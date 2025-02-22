@@ -81,7 +81,7 @@ const playlists = [
   },
   {
     id: 17,
-    sura: 'الإسراء',
+    sura: 'الإسـراء',
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAUYKssque0cgpjabEEB7puN',
   },
   {
@@ -166,7 +166,7 @@ const playlists = [
   },
   {
     id: 34,
-    sura: 'سبأ',
+    sura: 'سـبأ',
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAVEDQ6-v8GHUvoal7XYPapq',
   },
   {
@@ -381,7 +381,7 @@ const playlists = [
   },
   {
     id: 86,
-    sura: 'المرسلات',
+    sura: 'المرسـلات',
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAX86b2TRK_JZuzk0CmTmZdN',
   },
   {

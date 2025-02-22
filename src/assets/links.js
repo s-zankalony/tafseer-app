@@ -3464,8 +3464,8 @@ const links = [
   {
     id: '578',
     sura: 'النازعات',
-    verse: '',
-    url: '#VALUE!',
+    verse: 'كاملة',
+    url: 'https://youtu.be/iS5em8rDeLE?si=B0DsLsJAcEn1a2zV',
   },
   {
     id: '579',

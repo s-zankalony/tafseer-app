@@ -5,10 +5,12 @@ import {
   createContext,
   useMemo,
   useCallback,
+  useState,
 } from 'react';
 import debounce from 'lodash/debounce';
 import linksData from '../assets/links';
-import { reducer } from './reducer';
+import { reducer } from './reducer.jsx';
+import playlists from '../assets/playlists';
 
 const initialState = {
   links: linksData,
@@ -16,6 +18,8 @@ const initialState = {
   isSidebarOpen: false,
   searchTerm: '',
   currentPage: 1,
+  selectedSura: '',
+  currentPlaylists: [], // Add this line
 };
 
 export const AppContext = createContext();
@@ -24,6 +28,7 @@ const PAGE_SIZE = 9;
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [selectedSura, setSelectedSura] = useState('');
 
   const normalizeString = useCallback((str) => {
     return str
@@ -113,6 +118,31 @@ export const AppProvider = ({ children }) => {
     []
   );
 
+  const updateSelectedSura = useCallback(
+    (sura) => {
+      setSelectedSura(sura);
+      if (sura) {
+        // Find the sura in links to get its ID
+        const suraLink = state.links.find((link) => link.sura === sura);
+        if (suraLink && parseInt(suraLink.id) >= 576) {
+          // If sura ID >= 577, only show جزء عم playlist (id: 87)
+          const juzAmmaPlaylist = playlists.find((p) => p.id === 87);
+          dispatch({
+            type: 'SET_CURRENT_PLAYLISTS',
+            payload: juzAmmaPlaylist ? [juzAmmaPlaylist] : [],
+          });
+        } else {
+          // Otherwise show regular sura playlist
+          const suraPlaylists = playlists.filter((p) => p.sura === sura);
+          dispatch({ type: 'SET_CURRENT_PLAYLISTS', payload: suraPlaylists });
+        }
+      } else {
+        dispatch({ type: 'SET_CURRENT_PLAYLISTS', payload: [] });
+      }
+    },
+    [state.links]
+  );
+
   return (
     <AppContext.Provider
       value={{
@@ -128,6 +158,9 @@ export const AppProvider = ({ children }) => {
         normalizeString,
         resetSearchTerm: () =>
           dispatch({ type: 'SET_SEARCH_TERM', payload: '' }),
+        currentPlaylists: state.currentPlaylists,
+        selectedSura,
+        updateSelectedSura,
       }}
     >
       {children}
