@@ -65,17 +65,15 @@ const Sidebar2 = ({ children }) => {
   }, [toggleSidebar]);
 
   return (
-    <div className="flex">
-      <div className="flex-1">
-        <div className="p-4 sm:mr-56">{children}</div>
-      </div>
+    <div className="flex min-h-screen">
+      <div className="flex-1 w-full">{children}</div>
       <aside
-        className={`fixed top-18 right-0 w-full sm:w-56 h-screen transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed top-16 right-0 w-full sm:w-56 h-[calc(100vh-4rem)] transition-transform duration-300 ease-in-out z-50 ${
           isSidebarOpen ? 'translate-x-0' : 'translate-x-full sm:translate-x-0'
         }`}
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-green-100">
-          <ul className="space-y-2 font-medium mt-20">
+        <div className="h-full overflow-y-auto bg-green-100">
+          <ul className="space-y-2 font-medium mt-16 px-2">
             <li>
               <SidebarLink
                 to="/biography"
@@ -96,10 +94,12 @@ const Sidebar2 = ({ children }) => {
             </li>
           </ul>
           <hr className="my-4 border-t border-green-300" />
-          <h3 className="text-lg font-semibold text-green-800 mb-2">
-            قوائم التشغيل المتاحة:
-          </h3>
-          <SidebarPlaylist />
+          <div className="px-2">
+            <h3 className="text-lg font-semibold text-green-800 mb-2">
+              قوائم التشغيل المتاحة:
+            </h3>
+            <SidebarPlaylist />
+          </div>
         </div>
       </aside>
     </div>

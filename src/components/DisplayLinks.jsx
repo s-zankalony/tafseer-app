@@ -29,7 +29,6 @@ const DisplayLinks = () => {
     return filteredLinks.slice(indexOfFirstLink, indexOfLastLink);
   }, [filteredLinks, currentPage]);
 
-  // Handle selection changes
   const handleSuraChange = useCallback(
     (sura) => {
       setSelectedSura(sura);
@@ -46,42 +45,44 @@ const DisplayLinks = () => {
   }, []);
 
   return (
-    <div className="w-full px-2 sm:px-4">
-      <SuraVerseSelect
-        links={links}
-        selectedSura={selectedSura}
-        selectedVerse={selectedVerse}
-        onSuraChange={handleSuraChange}
-        onVerseChange={handleVerseChange}
-      />
+    <div className="w-full max-w-full overflow-hidden xxs:px-1 xs:px-2 sm:px-4">
+      <div className="max-w-[95vw] mx-auto">
+        <SuraVerseSelect
+          links={links}
+          selectedSura={selectedSura}
+          selectedVerse={selectedVerse}
+          onSuraChange={handleSuraChange}
+          onVerseChange={handleVerseChange}
+        />
 
-      {filteredLinks.length > 0 ? (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 my-4 auto-rows-fr">
-            {currentLinksData.map((link) => {
-              const videoId = getId(link.url);
-              const thumbSRC = `https://www.youtube.com/embed/${videoId}`;
-              return (
-                <div key={link.id} className="h-full">
-                  <OneLink thumbSRC={thumbSRC} link={link} />
-                </div>
-              );
-            })}
+        {filteredLinks.length > 0 ? (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 xxs:gap-2 sm:gap-4 my-4 auto-rows-fr mx-auto">
+              {currentLinksData.map((link) => {
+                const videoId = getId(link.url);
+                const thumbSRC = `https://www.youtube.com/embed/${videoId}`;
+                return (
+                  <div key={link.id} className="h-full w-full min-w-0">
+                    <OneLink thumbSRC={thumbSRC} link={link} />
+                  </div>
+                );
+              })}
+            </div>
+            <Pagination
+              className="pagination-bar mt-6"
+              currentPage={currentPage}
+              totalCount={filteredLinks.length}
+              pageSize={PAGE_SIZE}
+              onPageChange={setCurrentPage}
+            />
           </div>
-          <Pagination
-            className="pagination-bar mt-6"
-            currentPage={currentPage}
-            totalCount={filteredLinks.length}
-            pageSize={PAGE_SIZE}
-            onPageChange={setCurrentPage}
-          />
-        </div>
-      ) : (
-        <div className="text-center py-10">
-          <p className="text-xl text-gray-600">لا توجد نتائج</p>
-          <p className="text-gray-500 mt-2">الرجاء اختيار سورة و آية أخرى</p>
-        </div>
-      )}
+        ) : (
+          <div className="text-center py-10">
+            <p className="text-xl text-gray-600">لا توجد نتائج</p>
+            <p className="text-gray-500 mt-2">الرجاء اختيار سورة و آية أخرى</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
