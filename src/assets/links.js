@@ -3027,7 +3027,7 @@ const links = [
     id: '505',
     sura: 'ق',
     verse: 'من 31 إلى 45',
-    url: 'https://youtu.be/0jqCOKaUqKY',
+    url: 'https://youtu.be/OiwUADpOSts',
   },
   {
     id: '506',
