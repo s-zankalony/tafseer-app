@@ -27,7 +27,7 @@ const links = [
     id: '5',
     sura: 'البقرة',
     verse: 'من 21 إلى 25',
-    url: 'https://youtu.be/_bbrGcHShhs',
+    url: 'https://youtu.be/YyF2L3GfOJs',
   },
   {
     id: '6',
