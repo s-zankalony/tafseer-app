@@ -2,6 +2,7 @@ import React, { memo, useState, useCallback, useMemo } from 'react';
 import Pagination from './pagination/Pagination';
 import { useGlobalContext } from './context';
 import { getId } from '../assets/functions';
+import { VideoModal } from './VideoModal';
 
 const PAGE_SIZE = 9;
 
@@ -9,6 +10,8 @@ const DisplayHadith = () => {
   const { hadith } = useGlobalContext();
   const [selectedBook, setSelectedBook] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+  const [videoStartTime, setVideoStartTime] = useState(null);
 
   // Get unique books for filter dropdown
   const books = useMemo(() => {
@@ -34,6 +37,33 @@ const DisplayHadith = () => {
   const handleBookChange = useCallback((book) => {
     setSelectedBook(book);
     setCurrentPage(1);
+  }, []);
+
+  // Extract time parameter from URL (if any)
+  const extractTimeParameter = useCallback((url) => {
+    if (!url) return null;
+
+    // Check for t parameter in the format: t=123 or t=2m30s or feature=shared&t=123
+    const timeRegex = /[?&]t=([0-9hms]+)/;
+    const matches = url.match(timeRegex);
+
+    if (matches && matches[1]) {
+      return matches[1];
+    }
+    return null;
+  }, []);
+
+  const handleVideoPlay = useCallback(
+    (videoId, url) => {
+      setPlayingVideoId(videoId);
+      setVideoStartTime(extractTimeParameter(url));
+    },
+    [extractTimeParameter]
+  );
+
+  const handleCloseVideo = useCallback(() => {
+    setPlayingVideoId(null);
+    setVideoStartTime(null);
   }, []);
 
   return (
@@ -86,10 +116,9 @@ const DisplayHadith = () => {
                           loading="lazy"
                           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
                         />
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        {/* Clicking the video area opens the modal with timestamp */}
+                        <button
+                          onClick={() => handleVideoPlay(videoId, item.url)}
                           className="absolute inset-0 w-full h-full flex items-center justify-center bg-black bg-opacity-20 hover:bg-opacity-30 transition-opacity"
                         >
                           <svg
@@ -98,7 +127,7 @@ const DisplayHadith = () => {
                           >
                             <path fill="currentColor" d="M8 5v14l11-7z" />
                           </svg>
-                        </a>
+                        </button>
                       </div>
                     ) : (
                       <div className="relative pt-[56.25%] bg-gray-200">
@@ -115,10 +144,10 @@ const DisplayHadith = () => {
                       <p className="text-sm text-gray-600 mb-2">{item.book}</p>
                       {item.url && item.url !== 'TBA' ? (
                         <a
-                          target="_blank"
-                          className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm"
                           href={item.url}
+                          target="_blank"
                           rel="noopener noreferrer"
+                          className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm w-full block"
                         >
                           مشاهدة الحديث
                         </a>
@@ -147,6 +176,15 @@ const DisplayHadith = () => {
           </div>
         )}
       </div>
+
+      {/* Video Modal with timestamp support */}
+      {playingVideoId && (
+        <VideoModal
+          videoId={playingVideoId}
+          startTime={videoStartTime}
+          onClose={handleCloseVideo}
+        />
+      )}
     </div>
   );
 };
