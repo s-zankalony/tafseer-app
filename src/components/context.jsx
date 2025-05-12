@@ -9,6 +9,7 @@ import {
 } from 'react';
 import debounce from 'lodash/debounce';
 import linksData from '../assets/links';
+import hadithData from '../assets/hadith';
 import { reducer } from './reducer.jsx';
 import playlists from '../assets/playlists';
 
@@ -20,6 +21,7 @@ const initialState = {
   currentPage: 1,
   selectedSura: '',
   currentPlaylists: [], // Add this line
+  hadith: hadithData, // <-- Add hadith dataset here
 };
 
 export const AppContext = createContext();
@@ -146,7 +148,7 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        ...state,
+        ...state, // now includes state.hadith
         filteredLinks,
         setLinks: (payload) => dispatch({ type: 'SET_LINKS', payload }),
         setCurrentLinksData: (payload) =>

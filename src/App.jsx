@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import DisplayLinks from './components/DisplayLinks';
+import ContentTabs from './components/ContentTabs';
 import Layout from './components/Layout';
 import About from './components/About';
 import Playlists from './components/Playlists';
@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<DisplayLinks />} />
+          <Route path="/" element={<ContentTabs />} />
           <Route path="/about" element={<About />} />
           <Route path="/playlists" element={<Playlists />} />
           <Route path="/biography" element={<Biography />} />
