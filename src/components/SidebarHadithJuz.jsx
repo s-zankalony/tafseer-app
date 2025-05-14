@@ -31,20 +31,20 @@ const SidebarHadithJuz = () => {
 
   if (!juzOptions || juzOptions.length === 0) {
     return (
-      <div className="text-gray-400 text-center mt-4 text-sm font-bold">
+      <div className="text-gray-400 text-center mt-2 text-sm font-bold">
         لا توجد أجزاء متاحة
       </div>
     );
   }
 
   return (
-    <div className="space-y-2 mt-4">
-      <h3 className="text-lg font-bold text-green-800 mb-4">اختر الجزء:</h3>
-      <ul className="space-y-2 font-bold">
+    <div className="space-y-1 mt-2">
+      <h3 className="text-lg font-bold text-green-800 mb-2">اختر الجزء:</h3>
+      <ul className="space-y-1 font-bold">
         <li key="all-juz">
           <button
             onClick={() => handleJuzClick(null)}
-            className={`flex w-full items-center p-2 ${
+            className={`flex w-full items-center py-1 px-2 ${
               selectedJuz === null
                 ? 'text-green-100 bg-green-700 hover:bg-green-600'
                 : 'text-green-700 hover:bg-gray-100'
@@ -57,7 +57,7 @@ const SidebarHadithJuz = () => {
           <li key={juz}>
             <button
               onClick={() => handleJuzClick(juz)}
-              className={`flex w-full items-center p-2 ${
+              className={`flex w-full items-center py-1 px-2 ${
                 selectedJuz === juz
                   ? 'text-green-100 bg-green-700 hover:bg-green-600'
                   : 'text-green-700 hover:bg-gray-100'
