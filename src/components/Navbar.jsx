@@ -32,7 +32,7 @@ const Navbar = () => {
                   className="h-6 sm:h-8 ml-2"
                   alt="Quran Icon"
                 />
-                <span className="text-lg sm:text-xl font-bold whitespace-nowrap text-green-800">
+                <span className="text-lg sm:text-xl font-bold whitespace-nowrap text-green-800 arabic-heading">
                   تفسير القرآن - للشيخ/ ياسين رشدي
                 </span>
               </div>
