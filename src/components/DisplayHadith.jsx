@@ -7,11 +7,17 @@ import { VideoModal } from './VideoModal';
 const PAGE_SIZE = 9;
 
 const DisplayHadith = () => {
-  const { hadith, selectedJuz } = useGlobalContext();
+  const { hadith, selectedJuz, setSelectedJuz } = useGlobalContext();
   const [selectedBook, setSelectedBook] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [playingVideoId, setPlayingVideoId] = useState(null);
   const [videoStartTime, setVideoStartTime] = useState(null);
+
+  // Get unique juz values for mobile dropdown
+  const juzOptions = useMemo(() => {
+    const uniqueJuzValues = [...new Set(hadith.map((item) => item.juz))].sort();
+    return uniqueJuzValues;
+  }, [hadith]);
 
   // Get books based on selected juz
   const books = useMemo(() => {
@@ -44,6 +50,15 @@ const DisplayHadith = () => {
     const indexOfFirstItem = indexOfLastItem - PAGE_SIZE;
     return filteredHadith.slice(indexOfFirstItem, indexOfLastItem);
   }, [filteredHadith, currentPage]);
+
+  const handleJuzChange = useCallback(
+    (juz) => {
+      setSelectedJuz(juz);
+      setSelectedBook(null); // Reset book selection when juz changes
+      setCurrentPage(1);
+    },
+    [setSelectedJuz]
+  );
 
   const handleBookChange = useCallback((book) => {
     setSelectedBook(book);
@@ -80,6 +95,31 @@ const DisplayHadith = () => {
   return (
     <div className="w-full max-w-full overflow-hidden xxs:px-1 xs:px-2 sm:px-4">
       <div className="max-w-[95vw] mx-auto">
+        {/* Juz Selection Dropdown (only visible on small screens) */}
+        <div className="mb-4 block sm:hidden">
+          <label
+            htmlFor="juz-select-mobile"
+            className="block mb-2 text-lg font-medium"
+          >
+            اختر الجزء:
+          </label>
+          <select
+            id="juz-select-mobile"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+            value={selectedJuz || ''}
+            onChange={(e) => handleJuzChange(e.target.value || null)}
+          >
+            <option key="all-juz" value="">
+              جميع الأجزاء
+            </option>
+            {juzOptions.map((juz) => (
+              <option key={`juz-mobile-${juz}`} value={juz}>
+                {juz}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Book Selection Dropdown */}
         <div className="mb-4">
           <label
