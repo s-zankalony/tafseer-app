@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DisplayLinks from './DisplayLinks';
 import DisplayHadith from './DisplayHadith';
 import { useGlobalContext } from './context';
@@ -7,13 +7,9 @@ const ContentTabs = () => {
   const { setActiveTab } = useGlobalContext();
   const [localActiveTab, setLocalActiveTab] = useState('tafseer');
 
-  // Update context when tab changes
-  useEffect(() => {
-    setActiveTab(localActiveTab);
-  }, [localActiveTab, setActiveTab]);
-
   const handleTabChange = (tab) => {
     setLocalActiveTab(tab);
+    setActiveTab(tab);
   };
 
   return (
