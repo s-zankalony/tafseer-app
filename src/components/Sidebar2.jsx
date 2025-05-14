@@ -78,15 +78,6 @@ const Sidebar2 = ({ children }) => {
                 نبذة عن الشيخ
               </SidebarLink>
             </li>
-            <li>
-              <SidebarLink
-                to="/tafseer-intro"
-                isActive={location.pathname === '/tafseer-intro'}
-                onClick={handleLinkClick}
-              >
-                مقدمة تفسير القرآن
-              </SidebarLink>
-            </li>
           </ul>
           <hr className="my-4 border-t border-green-300" />
           <div className="px-2">
