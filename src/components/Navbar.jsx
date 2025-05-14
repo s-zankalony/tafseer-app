@@ -84,19 +84,6 @@ const Navbar = () => {
                   عن الموقع
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/hadith"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
-                  }
-                  onClick={() => isSidebarOpen && toggleSidebar()}
-                >
-                  الحديث
-                </NavLink>
-              </li>
             </ul>
           </div>
         </div>
