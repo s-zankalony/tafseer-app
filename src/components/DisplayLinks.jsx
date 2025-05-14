@@ -32,7 +32,7 @@ const DisplayLinks = () => {
 
   // Update the visible suras when currentLinksData changes
   useEffect(() => {
-    const uniqueSuras = [...new Set(currentLinksData.map(link => link.sura))];
+    const uniqueSuras = [...new Set(currentLinksData.map((link) => link.sura))];
     updateVisibleSuras(uniqueSuras);
   }, [currentLinksData, updateVisibleSuras]);
 

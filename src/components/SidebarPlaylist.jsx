@@ -12,15 +12,15 @@ const SidebarPlaylist = () => {
     if (currentPlaylists && currentPlaylists.length > 0) {
       return currentPlaylists;
     }
-    
+
     // If we have visible suras, display playlists for those suras
     if (visibleSuras && visibleSuras.length > 0) {
       // Use the imported playlists instead of requiring them
-      return playlists.filter(playlist => 
-        visibleSuras.some(sura => playlist.sura === sura)
+      return playlists.filter((playlist) =>
+        visibleSuras.some((sura) => playlist.sura === sura)
       );
     }
-    
+
     return [];
   }, [visibleSuras, currentPlaylists]);
 
