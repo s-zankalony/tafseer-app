@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DisplayLinks from './DisplayLinks';
 import DisplayHadith from './DisplayHadith';
 import { useGlobalContext } from './context';
 
 const ContentTabs = () => {
-  const { setActiveTab } = useGlobalContext();
-  const [localActiveTab, setLocalActiveTab] = useState('tafseer');
+  const { setActiveTab, activeTab } = useGlobalContext();
+  const [localActiveTab, setLocalActiveTab] = useState(activeTab);
+
+  // Sync with context when component mounts or activeTab changes
+  useEffect(() => {
+    setLocalActiveTab(activeTab);
+  }, [activeTab]);
 
   const handleTabChange = (tab) => {
     setLocalActiveTab(tab);

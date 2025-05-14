@@ -1,7 +1,7 @@
 import { FaAlignJustify } from 'react-icons/fa';
 import sidebarImage from '../assets/sidebar.gif';
 import playlists from '../assets/playlists';
-import { useContext, useMemo, useCallback, memo } from 'react';
+import { useContext, useMemo, useCallback, memo, useEffect } from 'react';
 import { AppContext } from './context';
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarPlaylist from './SidebarPlaylist';
@@ -28,8 +28,22 @@ const Sidebar2 = ({ children }) => {
     toggleSidebar,
     selectedSura,
     activeTab,
+    setActiveTab,
   } = useContext(AppContext);
   const location = useLocation();
+
+  // Reset to tafseer tab when navigating back to the home page
+  useEffect(() => {
+    if (location.pathname === '/') {
+      // Only reset if coming from another page, not during initial render
+      if (
+        document.referrer.includes(window.location.host) &&
+        !document.referrer.endsWith('/')
+      ) {
+        setActiveTab('tafseer');
+      }
+    }
+  }, [location.pathname, setActiveTab]);
 
   const sidebarClasses = `transform ${
     isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
