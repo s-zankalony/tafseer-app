@@ -3,6 +3,7 @@ import Pagination from './pagination/Pagination';
 import { useGlobalContext } from './context';
 import { getId } from '../assets/functions';
 import { VideoModal } from './VideoModal';
+import { NavLink } from 'react-router-dom';
 
 const PAGE_SIZE = 9;
 
@@ -107,6 +108,20 @@ const DisplayHadith = () => {
   return (
     <div className="w-full max-w-full overflow-hidden xxs:px-1 xs:px-2 sm:px-4">
       <div className="max-w-[95vw] mx-auto">
+        {/* Hadith Intro Link - updated to match DisplayLinks style */}
+        <div className="mb-6 flex justify-center">
+          <NavLink
+            to="/hadith-intro"
+            className={({ isActive }) =>
+              isActive
+                ? 'flex items-center py-2 px-4 bg-green-700 text-white rounded-lg shadow-md font-bold'
+                : 'flex items-center py-2 px-4 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-colors duration-300 font-bold'
+            }
+          >
+            مقدمة شرح صحيح البخاري
+          </NavLink>
+        </div>
+
         {/* Juz Selection Dropdown (only visible on small screens) */}
         <div className="mb-4 block sm:hidden">
           <label

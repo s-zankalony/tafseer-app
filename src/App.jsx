@@ -5,6 +5,7 @@ import About from './components/About';
 import Playlists from './components/Playlists';
 import Biography from './components/Biography';
 import TafseerIntroPage from './components/TafseerIntroPage';
+import HadithIntroPage from './components/HadithIntroPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/playlists" element={<Playlists />} />
           <Route path="/biography" element={<Biography />} />
           <Route path="/tafseer-intro" element={<TafseerIntroPage />} />
+          <Route path="/hadith-intro" element={<HadithIntroPage />} />
         </Routes>
       </Layout>
     </Router>
