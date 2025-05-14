@@ -193,8 +193,10 @@ const DisplayHadith = () => {
                         {item.bab}
                       </h4>
                       <div className="flex justify-between items-center mb-2">
-                        <p className="text-sm text-gray-600">{item.book}</p>
-                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
+                        <p className="text-sm text-gray-600 font-bold">
+                          {item.book}
+                        </p>
+                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded font-bold">
                           {item.juz}
                         </span>
                       </div>
@@ -203,12 +205,12 @@ const DisplayHadith = () => {
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm w-full block"
+                          className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm w-full block font-bold"
                         >
                           مشاهدة الحديث
                         </a>
                       ) : (
-                        <span className="mt-auto py-2 px-3 bg-yellow-500 text-white rounded text-center text-sm">
+                        <span className="mt-auto py-2 px-3 bg-yellow-500 text-white rounded text-center text-sm font-bold">
                           سيتم إضافته قريباً
                         </span>
                       )}
