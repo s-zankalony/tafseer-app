@@ -20,8 +20,9 @@ const initialState = {
   searchTerm: '',
   currentPage: 1,
   selectedSura: '',
-  currentPlaylists: [], // Add this line
-  hadith: hadithData, // <-- Add hadith dataset here
+  currentPlaylists: [],
+  hadith: hadithData,
+  activeTab: 'tafseer', // Add this to track active tab
 };
 
 export const AppContext = createContext();
@@ -31,6 +32,7 @@ const PAGE_SIZE = 9;
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [selectedSura, setSelectedSura] = useState('');
+  const [selectedJuz, setSelectedJuz] = useState(null);
 
   const normalizeString = useCallback((str) => {
     return str
@@ -100,8 +102,6 @@ export const AppProvider = ({ children }) => {
     return [...exactMatches, ...partialMatches];
   }, [state.links, state.searchTerm, normalizeString]);
 
-  // ... (rest of the code remains the same)
-
   const currentLinksData = useMemo(() => {
     const firstPageIndex = (state.currentPage - 1) * PAGE_SIZE;
     const lastPageIndex = firstPageIndex + PAGE_SIZE;
@@ -148,7 +148,7 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        ...state, // now includes state.hadith
+        ...state,
         filteredLinks,
         setLinks: (payload) => dispatch({ type: 'SET_LINKS', payload }),
         setCurrentLinksData: (payload) =>
@@ -163,14 +163,15 @@ export const AppProvider = ({ children }) => {
         currentPlaylists: state.currentPlaylists,
         selectedSura,
         updateSelectedSura,
+        setActiveTab: (tab) => dispatch({ type: 'SET_ACTIVE_TAB', payload: tab }),
+        selectedJuz,
+        setSelectedJuz,
       }}
     >
       {children}
     </AppContext.Provider>
   );
 };
-
-// ... (rest of the file remains the same)
 
 export const useGlobalContext = () => {
   return useContext(AppContext);

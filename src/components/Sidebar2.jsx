@@ -5,6 +5,7 @@ import { useContext, useMemo, useCallback, memo } from 'react';
 import { AppContext } from './context';
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarPlaylist from './SidebarPlaylist';
+import SidebarHadithJuz from './SidebarHadithJuz';
 
 const SidebarLink = memo(({ to, isActive, onClick, children }) => (
   <NavLink
@@ -21,7 +22,7 @@ const SidebarLink = memo(({ to, isActive, onClick, children }) => (
 ));
 
 const Sidebar2 = ({ children }) => {
-  const { isSidebarOpen, normalizeString, toggleSidebar, selectedSura } =
+  const { isSidebarOpen, normalizeString, toggleSidebar, selectedSura, activeTab } =
     useContext(AppContext);
   const location = useLocation();
 
@@ -84,10 +85,16 @@ const Sidebar2 = ({ children }) => {
           </ul>
           <hr className="my-4 border-t border-green-300" />
           <div className="px-2">
-            <h3 className="text-lg font-bold text-green-800 mb-2">
-              قوائم التشغيل المتاحة:
-            </h3>
-            <SidebarPlaylist />
+            {activeTab === 'tafseer' ? (
+              <>
+                <h3 className="text-lg font-bold text-green-800 mb-2">
+                  قوائم التشغيل المتاحة:
+                </h3>
+                <SidebarPlaylist />
+              </>
+            ) : (
+              <SidebarHadithJuz />
+            )}
           </div>
         </div>
       </aside>
