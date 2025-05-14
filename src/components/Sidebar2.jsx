@@ -59,6 +59,9 @@ const Sidebar2 = ({ children }) => {
     }
   }, [toggleSidebar]);
 
+  // Check if we're on the homepage
+  const isHomePage = location.pathname === '/';
+
   return (
     <div className="flex min-h-screen relative">
       <div className="flex-1 w-full sm:pr-56">{children}</div>
@@ -81,15 +84,19 @@ const Sidebar2 = ({ children }) => {
           </ul>
           <hr className="my-4 border-t border-green-300" />
           <div className="px-2">
-            {activeTab === 'tafseer' ? (
+            {isHomePage && (
               <>
-                <h3 className="text-lg font-bold text-green-800 mb-2">
-                  قوائم التشغيل المتاحة:
-                </h3>
-                <SidebarPlaylist />
+                {activeTab === 'tafseer' ? (
+                  <>
+                    <h3 className="text-lg font-bold text-green-800 mb-2">
+                      قوائم التشغيل المتاحة:
+                    </h3>
+                    <SidebarPlaylist />
+                  </>
+                ) : (
+                  <SidebarHadithJuz />
+                )}
               </>
-            ) : (
-              <SidebarHadithJuz />
             )}
           </div>
         </div>
