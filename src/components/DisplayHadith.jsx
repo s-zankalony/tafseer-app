@@ -13,10 +13,22 @@ const DisplayHadith = () => {
   const [playingVideoId, setPlayingVideoId] = useState(null);
   const [videoStartTime, setVideoStartTime] = useState(null);
 
-  // Get unique juz values for mobile dropdown
+  // Get unique juz values for mobile dropdown - updated to sort by juzNo
   const juzOptions = useMemo(() => {
-    const uniqueJuzValues = [...new Set(hadith.map((item) => item.juz))].sort();
-    return uniqueJuzValues;
+    // Create a map of juz to juzNo
+    const juzMap = new Map();
+
+    // Collect all unique juz values with their juzNo
+    hadith.forEach((item) => {
+      if (!juzMap.has(item.juz)) {
+        juzMap.set(item.juz, item.juzNo);
+      }
+    });
+
+    // Convert to array and sort by juzNo (numerically)
+    return [...juzMap.entries()]
+      .sort((a, b) => Number(a[1]) - Number(b[1]))
+      .map((entry) => entry[0]);
   }, [hadith]);
 
   // Get books based on selected juz

@@ -1,11 +1,26 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useGlobalContext } from './context';
 
 const SidebarHadithJuz = () => {
   const { hadith, setSelectedJuz, selectedJuz } = useGlobalContext();
 
-  // Get unique juz values
-  const juzOptions = [...new Set(hadith.map((item) => item.juz))].sort();
+  // Get unique juz values and sort by juzNo
+  const juzOptions = useMemo(() => {
+    // Create a map of juz to juzNo
+    const juzMap = new Map();
+
+    // Collect all unique juz values with their juzNo
+    hadith.forEach((item) => {
+      if (!juzMap.has(item.juz)) {
+        juzMap.set(item.juz, item.juzNo);
+      }
+    });
+
+    // Convert to array and sort by juzNo (numerically)
+    return [...juzMap.entries()]
+      .sort((a, b) => Number(a[1]) - Number(b[1]))
+      .map((entry) => entry[0]);
+  }, [hadith]);
 
   const handleJuzClick = useCallback(
     (juz) => {
