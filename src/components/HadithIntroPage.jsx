@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import hadithIntro from '../assets/hadithIntro.js';
 import { getId } from '../assets/functions.jsx';
+import { VideoModal } from './VideoModal';
 
 const HadithIntroPage = () => {
   const introData = hadithIntro[0]; // There's only one item in the array
   const videoId = getId(introData.url); // Extract video ID from URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+
+  const handleVideoPlay = useCallback(() => {
+    setPlayingVideoId(videoId);
+  }, [videoId]);
+
+  const handleCloseVideo = useCallback(() => {
+    setPlayingVideoId(null);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-50 to-green-100 text-green-800 text-center p-8">
@@ -13,7 +24,10 @@ const HadithIntroPage = () => {
         <h1 className="text-4xl font-bold mb-6 text-green-600">
           مقدمة شرح صحيح البخاري
         </h1>
-        <div className="relative group cursor-pointer mb-6">
+        <div
+          className="relative group cursor-pointer mb-6"
+          onClick={handleVideoPlay}
+        >
           <img
             src={thumbnailUrl}
             alt="Video Thumbnail"
@@ -38,6 +52,11 @@ const HadithIntroPage = () => {
           شاهد المقدمة
         </a>
       </div>
+
+      {/* Video Modal */}
+      {playingVideoId && (
+        <VideoModal videoId={playingVideoId} onClose={handleCloseVideo} />
+      )}
     </div>
   );
 };
