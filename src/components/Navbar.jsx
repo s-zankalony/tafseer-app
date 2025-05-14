@@ -29,11 +29,13 @@ const Navbar = () => {
               <div className="flex items-center justify-center sm:justify-end flex-grow sm:flex-grow-0">
                 <img
                   src={quranIcon}
-                  className="h-6 sm:h-8 ml-2"
+                  className="hidden sm:block h-6 sm:h-8 ml-2"
                   alt="Quran Icon"
                 />
-                <span className="text-lg sm:text-xl font-bold whitespace-nowrap text-green-800 arabic-heading">
-                  تفسير القرآن - للشيخ/ ياسين رشدي
+                <span className="text-lg sm:text-xl font-bold whitespace-normal sm:whitespace-nowrap text-green-800 arabic-heading text-center sm:text-right">
+                  تفسير القرآن وشرح صحيح البخاري
+                  <br className="inline sm:hidden" />
+                  <span className="block sm:inline"> للشيخ/ ياسين رشدي</span>
                 </span>
               </div>
             </NavLink>

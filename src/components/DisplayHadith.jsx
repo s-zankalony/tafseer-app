@@ -135,7 +135,7 @@ const DisplayHadith = () => {
             onChange={(e) => handleBookChange(e.target.value || null)}
           >
             <option key="all-books" value="">
-              جميع الكتب
+              اختر الكتاب
             </option>
             {books.map((book, index) => (
               <option key={`book-${index}-${book}`} value={book}>
