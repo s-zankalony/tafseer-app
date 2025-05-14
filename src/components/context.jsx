@@ -163,7 +163,8 @@ export const AppProvider = ({ children }) => {
         currentPlaylists: state.currentPlaylists,
         selectedSura,
         updateSelectedSura,
-        setActiveTab: (tab) => dispatch({ type: 'SET_ACTIVE_TAB', payload: tab }),
+        setActiveTab: (tab) =>
+          dispatch({ type: 'SET_ACTIVE_TAB', payload: tab }),
         selectedJuz,
         setSelectedJuz,
       }}

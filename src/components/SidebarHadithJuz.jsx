@@ -3,13 +3,16 @@ import { useGlobalContext } from './context';
 
 const SidebarHadithJuz = () => {
   const { hadith, setSelectedJuz, selectedJuz } = useGlobalContext();
-  
-  // Get unique juz values
-  const juzOptions = [...new Set(hadith.map(item => item.juz))].sort();
 
-  const handleJuzClick = useCallback((juz) => {
-    setSelectedJuz(juz);
-  }, [setSelectedJuz]);
+  // Get unique juz values
+  const juzOptions = [...new Set(hadith.map((item) => item.juz))].sort();
+
+  const handleJuzClick = useCallback(
+    (juz) => {
+      setSelectedJuz(juz);
+    },
+    [setSelectedJuz]
+  );
 
   if (!juzOptions || juzOptions.length === 0) {
     return (
@@ -26,7 +29,11 @@ const SidebarHadithJuz = () => {
         <li key="all-juz">
           <button
             onClick={() => handleJuzClick(null)}
-            className={`flex w-full items-center p-2 ${selectedJuz === null ? 'text-green-100 bg-green-700' : 'text-green-700'} rounded-lg hover:bg-gray-100 group cursor-pointer font-bold`}
+            className={`flex w-full items-center p-2 ${
+              selectedJuz === null
+                ? 'text-green-100 bg-green-700'
+                : 'text-green-700'
+            } rounded-lg hover:bg-gray-100 group cursor-pointer font-bold`}
           >
             <span>جميع الأجزاء</span>
           </button>
@@ -35,7 +42,11 @@ const SidebarHadithJuz = () => {
           <li key={juz}>
             <button
               onClick={() => handleJuzClick(juz)}
-              className={`flex w-full items-center p-2 ${selectedJuz === juz ? 'text-green-100 bg-green-700' : 'text-green-700'} rounded-lg hover:bg-gray-100 group cursor-pointer font-bold`}
+              className={`flex w-full items-center p-2 ${
+                selectedJuz === juz
+                  ? 'text-green-100 bg-green-700'
+                  : 'text-green-700'
+              } rounded-lg hover:bg-gray-100 group cursor-pointer font-bold`}
             >
               <span>{juz}</span>
             </button>

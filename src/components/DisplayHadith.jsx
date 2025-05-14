@@ -15,26 +15,26 @@ const DisplayHadith = () => {
 
   // Get books based on selected juz
   const books = useMemo(() => {
-    const filteredByJuz = selectedJuz 
-      ? hadith.filter(item => item.juz === selectedJuz)
+    const filteredByJuz = selectedJuz
+      ? hadith.filter((item) => item.juz === selectedJuz)
       : hadith;
-    
-    const uniqueBooks = [...new Set(filteredByJuz.map(item => item.book))];
+
+    const uniqueBooks = [...new Set(filteredByJuz.map((item) => item.book))];
     return uniqueBooks;
   }, [hadith, selectedJuz]);
 
   // Filter hadith based on selected juz and book
   const filteredHadith = useMemo(() => {
     let filtered = [...hadith];
-    
+
     if (selectedJuz) {
-      filtered = filtered.filter(item => item.juz === selectedJuz);
+      filtered = filtered.filter((item) => item.juz === selectedJuz);
     }
-    
+
     if (selectedBook) {
-      filtered = filtered.filter(item => item.book === selectedBook);
+      filtered = filtered.filter((item) => item.book === selectedBook);
     }
-    
+
     return filtered;
   }, [hadith, selectedJuz, selectedBook]);
 
@@ -53,21 +53,24 @@ const DisplayHadith = () => {
   // Extract time parameter from URL (if any)
   const extractTimeParameter = useCallback((url) => {
     if (!url) return null;
-    
+
     // Check for t parameter in the format: t=123 or t=2m30s or feature=shared&t=123
     const timeRegex = /[?&]t=([0-9hms]+)/;
     const matches = url.match(timeRegex);
-    
+
     if (matches && matches[1]) {
       return matches[1];
     }
     return null;
   }, []);
 
-  const handleVideoPlay = useCallback((videoId, url) => {
-    setPlayingVideoId(videoId);
-    setVideoStartTime(extractTimeParameter(url));
-  }, [extractTimeParameter]);
+  const handleVideoPlay = useCallback(
+    (videoId, url) => {
+      setPlayingVideoId(videoId);
+      setVideoStartTime(extractTimeParameter(url));
+    },
+    [extractTimeParameter]
+  );
 
   const handleCloseVideo = useCallback(() => {
     setPlayingVideoId(null);
@@ -129,7 +132,10 @@ const DisplayHadith = () => {
                           onClick={() => handleVideoPlay(videoId, item.url)}
                           className="absolute inset-0 w-full h-full flex items-center justify-center bg-black bg-opacity-20 hover:bg-opacity-30 transition-opacity"
                         >
-                          <svg className="w-16 h-16 text-white" viewBox="0 0 24 24">
+                          <svg
+                            className="w-16 h-16 text-white"
+                            viewBox="0 0 24 24"
+                          >
                             <path fill="currentColor" d="M8 5v14l11-7z" />
                           </svg>
                         </button>
@@ -148,7 +154,9 @@ const DisplayHadith = () => {
                       </h4>
                       <div className="flex justify-between items-center mb-2">
                         <p className="text-sm text-gray-600">{item.book}</p>
-                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{item.juz}</span>
+                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
+                          {item.juz}
+                        </span>
                       </div>
                       {item.url && item.url !== 'TBA' ? (
                         <a
@@ -187,10 +195,10 @@ const DisplayHadith = () => {
 
       {/* Video Modal */}
       {playingVideoId && (
-        <VideoModal 
-          videoId={playingVideoId} 
+        <VideoModal
+          videoId={playingVideoId}
           startTime={videoStartTime}
-          onClose={handleCloseVideo} 
+          onClose={handleCloseVideo}
         />
       )}
     </div>

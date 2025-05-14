@@ -22,8 +22,13 @@ const SidebarLink = memo(({ to, isActive, onClick, children }) => (
 ));
 
 const Sidebar2 = ({ children }) => {
-  const { isSidebarOpen, normalizeString, toggleSidebar, selectedSura, activeTab } =
-    useContext(AppContext);
+  const {
+    isSidebarOpen,
+    normalizeString,
+    toggleSidebar,
+    selectedSura,
+    activeTab,
+  } = useContext(AppContext);
   const location = useLocation();
 
   const sidebarClasses = `transform ${
@@ -79,7 +84,7 @@ const Sidebar2 = ({ children }) => {
                 isActive={location.pathname === '/tafseer-intro'}
                 onClick={handleLinkClick}
               >
-                مقدمة التفسير
+                مقدمة تفسير القرآن
               </SidebarLink>
             </li>
           </ul>
