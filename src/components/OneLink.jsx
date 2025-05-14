@@ -37,7 +37,7 @@ const OneLink = ({ thumbSRC, link }) => {
           </h4>
           <a
             target="_blank"
-            className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm"
+            className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm font-bold"
             href={link.url}
             rel="noopener noreferrer"
           >
