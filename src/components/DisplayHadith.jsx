@@ -201,17 +201,18 @@ const DisplayHadith = () => {
                     )}
 
                     <div className="p-3 flex flex-col flex-grow">
-                      <h4 className="text-base font-semibold text-green-700 mb-2">
-                        {item.bab}
-                      </h4>
-                      <div className="flex justify-between items-center mb-2">
-                        <p className="text-sm text-gray-600 font-bold">
-                          {item.book}
-                        </p>
-                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded font-bold">
-                          {item.juz}
-                        </span>
+                      {/* Book name - now positioned at the top consistently */}
+                      <p className="text-sm text-gray-600 font-bold mb-2 pb-1 border-b border-gray-300">
+                        {item.book}
+                      </p>
+
+                      {/* Bab title with min-height to ensure consistent spacing */}
+                      <div className="min-h-[60px] mb-2">
+                        <h4 className="text-base font-semibold text-green-700">
+                          {item.bab}
+                        </h4>
                       </div>
+
                       {item.url && item.url !== 'TBA' ? (
                         <a
                           href={item.url}
