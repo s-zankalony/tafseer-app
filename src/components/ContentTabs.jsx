@@ -18,7 +18,7 @@ const ContentTabs = () => {
               }`}
               onClick={() => setActiveTab('tafseer')}
             >
-              التفاسير
+              تفسير القرآن
             </button>
           </li>
           <li className="mx-2">
@@ -30,7 +30,7 @@ const ContentTabs = () => {
               }`}
               onClick={() => setActiveTab('hadith')}
             >
-              الأحاديث
+              شرح صحيح البخاري
             </button>
           </li>
         </ul>
