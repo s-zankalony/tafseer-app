@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo, useState, useCallback, useEffect } from 'react';
 import OneLink from './OneLink';
 import Pagination from './pagination/Pagination';
 import SuraVerseSelect from './SuraVerseSelect';
@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 const PAGE_SIZE = 9;
 
 const DisplayLinks = () => {
-  const { links, updateSelectedSura } = useGlobalContext();
+  const { links, updateSelectedSura, updateVisibleSuras } = useGlobalContext();
   const [selectedSura, setSelectedSura] = useState(null);
   const [selectedVerse, setSelectedVerse] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,6 +29,12 @@ const DisplayLinks = () => {
     const indexOfFirstLink = indexOfLastLink - PAGE_SIZE;
     return filteredLinks.slice(indexOfFirstLink, indexOfLastLink);
   }, [filteredLinks, currentPage]);
+
+  // Update the visible suras when currentLinksData changes
+  useEffect(() => {
+    const uniqueSuras = [...new Set(currentLinksData.map(link => link.sura))];
+    updateVisibleSuras(uniqueSuras);
+  }, [currentLinksData, updateVisibleSuras]);
 
   const handleSuraChange = useCallback(
     (sura) => {

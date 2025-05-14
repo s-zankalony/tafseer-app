@@ -33,6 +33,7 @@ export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [selectedSura, setSelectedSura] = useState('');
   const [selectedJuz, setSelectedJuz] = useState(null);
+  const [visibleSuras, setVisibleSuras] = useState([]);
 
   const normalizeString = useCallback((str) => {
     return str
@@ -145,6 +146,11 @@ export const AppProvider = ({ children }) => {
     [state.links]
   );
 
+  // Function to update visible suras from DisplayLinks
+  const updateVisibleSuras = useCallback((suras) => {
+    setVisibleSuras(suras);
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -163,10 +169,11 @@ export const AppProvider = ({ children }) => {
         currentPlaylists: state.currentPlaylists,
         selectedSura,
         updateSelectedSura,
-        setActiveTab: (tab) =>
-          dispatch({ type: 'SET_ACTIVE_TAB', payload: tab }),
+        setActiveTab: (tab) => dispatch({ type: 'SET_ACTIVE_TAB', payload: tab }),
         selectedJuz,
         setSelectedJuz,
+        visibleSuras,
+        updateVisibleSuras,
       }}
     >
       {children}
