@@ -32,7 +32,7 @@ const Navbar = () => {
                   className="h-6 sm:h-8 ml-2"
                   alt="Quran Icon"
                 />
-                <span className="text-lg sm:text-xl font-semibold whitespace-nowrap text-green-800">
+                <span className="text-lg sm:text-xl font-bold whitespace-nowrap text-green-800">
                   تفسير القرآن - للشيخ/ ياسين رشدي
                 </span>
               </div>
@@ -40,14 +40,14 @@ const Navbar = () => {
             <div className="w-8 sm:hidden"></div>
           </div>
           <div className="w-full sm:w-auto" id="navbar-default">
-            <ul className="font-medium flex justify-center sm:justify-start space-x-4 space-x-reverse">
+            <ul className="font-bold flex justify-center sm:justify-start space-x-4 space-x-reverse">
               <li>
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
                   }
                   aria-current="page"
                   onClick={() => {
@@ -63,8 +63,8 @@ const Navbar = () => {
                   to="/Playlists"
                   className={({ isActive }) =>
                     isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
                   }
                   onClick={() => isSidebarOpen && toggleSidebar()}
                 >
@@ -76,8 +76,8 @@ const Navbar = () => {
                   to="/about"
                   className={({ isActive }) =>
                     isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
                   }
                   onClick={() => isSidebarOpen && toggleSidebar()}
                 >
@@ -89,8 +89,8 @@ const Navbar = () => {
                   to="/hadith"
                   className={({ isActive }) =>
                     isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700'
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
                   }
                   onClick={() => isSidebarOpen && toggleSidebar()}
                 >

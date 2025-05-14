@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap'); /* Arabic optimized font */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +14,7 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'PT Sans', 'Segoe UI', Tahoma, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -23,6 +26,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang='ar'],
+[dir='rtl'] {
+  font-family: 'Cairo', 'PT Sans', sans-serif;
+}
+
+body {
+  font-family: inherit;
 }
 
 #root {

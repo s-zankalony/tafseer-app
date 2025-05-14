@@ -6,17 +6,13 @@ import { AppContext } from './context';
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarPlaylist from './SidebarPlaylist';
 
-// const SPECIAL_PLAYLIST_ID = 87;
-// const SPECIAL_ID_RANGE_START = 576;
-// const SPECIAL_ID_RANGE_END = 600;
-
 const SidebarLink = memo(({ to, isActive, onClick, children }) => (
   <NavLink
     to={to}
     className={
       isActive
-        ? 'flex items-center p-2 text-green-100 bg-green-700 rounded-lg hover:bg-green-600 group cursor-pointer'
-        : 'flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer'
+        ? 'flex items-center p-2 text-green-100 bg-green-700 rounded-lg hover:bg-green-600 group cursor-pointer font-bold'
+        : 'flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer font-bold'
     }
     onClick={onClick}
   >
@@ -25,16 +21,10 @@ const SidebarLink = memo(({ to, isActive, onClick, children }) => (
 ));
 
 const Sidebar2 = ({ children }) => {
-  const {
-    // currentLinksData,
-    isSidebarOpen,
-    normalizeString,
-    toggleSidebar,
-    selectedSura,
-  } = useContext(AppContext);
+  const { isSidebarOpen, normalizeString, toggleSidebar, selectedSura } =
+    useContext(AppContext);
   const location = useLocation();
 
-  // Enhance sidebar visibility classes
   const sidebarClasses = `transform ${
     isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
   } fixed left-0 top-0 z-40 h-screen w-64 overflow-y-auto bg-white pt-16 transition-transform duration-300 ease-in-out sm:translate-x-0 sm:static sm:h-auto sm:w-64 sm:pt-0`;
@@ -46,7 +36,6 @@ const Sidebar2 = ({ children }) => {
       const normalizedSura = normalizeString(selectedSura);
       const normalizedPlaylistSura = normalizeString(playlist.sura);
 
-      // Special case for سبأ
       if (playlist.sura === 'سـبأ' && normalizedSura.startsWith('سب')) {
         return true;
       }
@@ -73,7 +62,7 @@ const Sidebar2 = ({ children }) => {
         }`}
       >
         <div className="h-full overflow-y-auto bg-green-100">
-          <ul className="space-y-2 font-medium mt-16 px-2">
+          <ul className="space-y-2 font-bold mt-16 px-2">
             <li>
               <SidebarLink
                 to="/biography"
@@ -95,7 +84,7 @@ const Sidebar2 = ({ children }) => {
           </ul>
           <hr className="my-4 border-t border-green-300" />
           <div className="px-2">
-            <h3 className="text-lg font-semibold text-green-800 mb-2">
+            <h3 className="text-lg font-bold text-green-800 mb-2">
               قوائم التشغيل المتاحة:
             </h3>
             <SidebarPlaylist />
