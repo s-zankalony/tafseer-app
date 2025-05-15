@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import tafseerIntro from '../assets/tafseerIntro.js';
+import hadithIntro from '../assets/hadithIntro.js';
 import { getId } from '../assets/functions.jsx';
 import { VideoModal } from './VideoModal';
 
-const TafseerIntroPage = () => {
-  const introData = tafseerIntro[0]; // There's only one item in the array
+const HadithIntroPage = () => {
+  const introData = hadithIntro[0]; // There's only one item in the array
   const videoId = getId(introData.url); // Extract video ID from URL
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
 
@@ -20,11 +20,10 @@ const TafseerIntroPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-50 to-green-100 text-green-800 text-center p-8">
-      <div className=" rounded-lg shadow-xl p-8 max-w-2xl w-full">
+      <div className="rounded-lg shadow-xl p-8 max-w-2xl w-full">
         <h1 className="text-4xl font-bold mb-6 text-green-600">
-          مقدمة التفسير
+          مقدمة شرح صحيح البخاري
         </h1>
-        {/* <h2 className="text-2xl mb-6 text-green-500">{introData.sura}</h2> */}
         <div
           className="relative group cursor-pointer mb-6"
           onClick={handleVideoPlay}
@@ -62,4 +61,4 @@ const TafseerIntroPage = () => {
   );
 };
 
-export default TafseerIntroPage;
+export default HadithIntroPage;

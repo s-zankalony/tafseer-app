@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap'); /* Arabic optimized font */
+
+/* Import PT Heading Bold font */
+@font-face {
+  font-family: 'PT Heading Bold';
+  src: url('./assets/PTBLDHAD.TTF') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +23,7 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'PT Sans', 'Segoe UI', Tahoma, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -23,6 +35,20 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang='ar'],
+[dir='rtl'] {
+  font-family: 'Cairo', 'PT Sans', sans-serif;
+}
+
+.arabic-heading {
+  font-family: 'PT Heading Bold', 'Traditional Arabic', sans-serif !important;
+  font-weight: bold;
+}
+
+body {
+  font-family: inherit;
 }
 
 #root {
