@@ -13,7 +13,7 @@ export function VideoModal({ videoId, startTime, onClose }) {
       <div className="relative w-full max-w-4xl">
         <button
           onClick={onClose}
-          className="absolute -top-12 right-0 text-white hover:text-gray-300 z-[10000] p-2"
+          className="absolute -top-12 right-0 bg-red-600 text-white hover:bg-red-700 rounded-md font-bold shadow-md z-[10000] py-2 px-4"
         >
           ✕ إغلاق
         </button>
