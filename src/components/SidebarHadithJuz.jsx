@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, useEffect } from 'react';
 import { useGlobalContext } from './context';
 
 const SidebarHadithJuz = () => {
@@ -22,6 +22,15 @@ const SidebarHadithJuz = () => {
       .map((entry) => entry[0]);
   }, [hadith]);
 
+  // Set initial juz to "الجزء الأول" if it exists in options
+  useEffect(() => {
+    if (juzOptions.length > 0 && !selectedJuz) {
+      const firstJuz =
+        juzOptions.find((juz) => juz === 'الجزء الأول') || juzOptions[0];
+      setSelectedJuz(firstJuz);
+    }
+  }, [juzOptions, selectedJuz, setSelectedJuz]);
+
   const handleJuzClick = useCallback(
     (juz) => {
       setSelectedJuz(juz);
@@ -39,20 +48,11 @@ const SidebarHadithJuz = () => {
 
   return (
     <div className="space-y-1 mt-2">
-      <h3 className="text-lg font-bold text-green-800 mb-2">اختر الجزء:</h3>
+      <h3 className="text-lg font-bold text-green-800 mb-2 text-right">
+        اختر الجزء:
+      </h3>
       <ul className="space-y-1 font-bold">
-        <li key="all-juz">
-          <button
-            onClick={() => handleJuzClick(null)}
-            className={`flex w-full items-center py-1 px-2 ${
-              selectedJuz === null
-                ? 'text-green-100 bg-green-700 hover:bg-green-600'
-                : 'text-green-700 hover:bg-gray-100'
-            } rounded-lg group cursor-pointer font-bold`}
-          >
-            <span>جميع الأجزاء</span>
-          </button>
-        </li>
+        {/* All-juz option removed */}
         {juzOptions.map((juz) => (
           <li key={juz}>
             <button

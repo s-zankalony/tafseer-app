@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback, useMemo } from 'react';
+import React, { memo, useState, useCallback, useMemo, useEffect } from 'react';
 import Pagination from './pagination/Pagination';
 import { useGlobalContext } from './context';
 import { getId } from '../assets/functions';
@@ -42,6 +42,21 @@ const DisplayHadith = () => {
     return uniqueBooks;
   }, [hadith, selectedJuz]);
 
+  // Set initial book after books are loaded - modified to handle all juzes
+  useEffect(() => {
+    if (books.length > 0 && !selectedBook) {
+      // Simply take the first book in the filtered list
+      setSelectedBook(books[0]);
+    } else if (
+      books.length > 0 &&
+      selectedBook &&
+      !books.includes(selectedBook)
+    ) {
+      // If current book is not in the new juz's book list, reset to first book
+      setSelectedBook(books[0]);
+    }
+  }, [books, selectedBook]);
+
   // Filter hadith based on selected juz and book
   const filteredHadith = useMemo(() => {
     let filtered = [...hadith];
@@ -64,10 +79,12 @@ const DisplayHadith = () => {
     return filteredHadith.slice(indexOfFirstItem, indexOfLastItem);
   }, [filteredHadith, currentPage]);
 
+  // Modified function to handle juz change better
   const handleJuzChange = useCallback(
     (juz) => {
       setSelectedJuz(juz);
-      setSelectedBook(null); // Reset book selection when juz changes
+      // Always reset book selection when changing juz
+      setSelectedBook(null);
       setCurrentPage(1);
     },
     [setSelectedJuz]
@@ -126,7 +143,7 @@ const DisplayHadith = () => {
         <div className="mb-4 block sm:hidden">
           <label
             htmlFor="juz-select-mobile"
-            className="block mb-2 text-lg font-medium"
+            className="block mb-2 text-lg font-medium text-right"
           >
             اختر الجزء:
           </label>
@@ -136,9 +153,6 @@ const DisplayHadith = () => {
             value={selectedJuz || ''}
             onChange={(e) => handleJuzChange(e.target.value || null)}
           >
-            <option key="all-juz" value="">
-              جميع الأجزاء
-            </option>
             {juzOptions.map((juz) => (
               <option key={`juz-mobile-${juz}`} value={juz}>
                 {juz}
@@ -161,9 +175,6 @@ const DisplayHadith = () => {
             value={selectedBook || ''}
             onChange={(e) => handleBookChange(e.target.value || null)}
           >
-            <option key="all-books" value="">
-              اختر الكتاب
-            </option>
             {books.map((book, index) => (
               <option key={`book-${index}-${book}`} value={book}>
                 {book}
