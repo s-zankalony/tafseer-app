@@ -411,7 +411,7 @@ const links = [
     id: '69',
     sura: 'البقرة',
     verse: 'من 268 إلى 271',
-    url: 'https://youtu.be/cV-abwW5qVQ',
+    url: 'https://youtu.be/R3K0AegsEMQ',
   },
   {
     id: '70',
