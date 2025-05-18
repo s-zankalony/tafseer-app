@@ -465,7 +465,7 @@ const links = [
     id: '78',
     sura: 'آل عمران',
     verse: 'من 19 إلى 27',
-    url: 'https://youtu.be/_ghxEfMSMps',
+    url: 'https://youtu.be/LtsD7Z4G7l0',
   },
   {
     id: '79',
