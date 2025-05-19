@@ -38,18 +38,12 @@ const Sidebar2 = ({ children }) => {
   const location = useLocation();
   const [showHadithSidebar, setShowHadithSidebar] = useState(false);
 
-  // Reset to tafseer tab when navigating back to the home page
+  // Reset to 'tafseer' tab once on initial mount if we're on the home page
   useEffect(() => {
     if (location.pathname === '/') {
-      // Only reset if coming from another page, not during initial render
-      if (
-        document.referrer.includes(window.location.host) &&
-        !document.referrer.endsWith('/')
-      ) {
-        setActiveTab('tafseer');
-      }
+      setActiveTab('tafseer');
     }
-  }, [location.pathname, setActiveTab]);
+  }, []); // <-- no dependencies, runs only once
 
   const sidebarClasses = `transform ${
     isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
@@ -82,7 +76,7 @@ const Sidebar2 = ({ children }) => {
   // Check if we're on the homepage
   const isHomePage = location.pathname === '/';
 
-  // Effect to handle displaying the appropriate sidebar based on activeTab
+  // Effect to track hadith/tab visibility
   useEffect(() => {
     setShowHadithSidebar(activeTab === 'hadith');
   }, [activeTab]);

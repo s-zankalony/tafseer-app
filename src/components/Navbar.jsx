@@ -32,7 +32,7 @@ const Navbar = () => {
                   className="hidden sm:block h-6 sm:h-8 ml-2"
                   alt="Quran Icon"
                 />
-                <span className="text-lg sm:text-xl font-bold whitespace-normal sm:whitespace-nowrap text-green-800 arabic-heading text-center sm:text-right">
+                <span className="font-ptbldhad text-lg sm:text-xl font-bold whitespace-normal sm:whitespace-nowrap text-green-800 text-center sm:text-right">
                   تفسير القرآن وشرح صحيح البخاري
                   <br className="inline sm:hidden" />
                   <span className="block sm:inline"> للشيخ/ ياسين رشدي</span>

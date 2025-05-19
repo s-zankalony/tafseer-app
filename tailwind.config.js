@@ -9,6 +9,7 @@ export default {
       },
       fontFamily: {
         sans: ['PT Sans', 'Segoe UI', 'Tahoma', 'sans-serif'],
+        ptbldhad: ['PTBLDHAD', 'PT Sans', 'Segoe UI', 'sans-serif'],
       },
     },
   },
