@@ -63,7 +63,6 @@ const Playlists = () => {
       <div className="mt-4">
         {activeTab === 'tafseer' && (
           <div className="flex flex-col items-center justify-center min-h-screen text-green-800 text-center p-4">
-            <h1 className="text-3xl font-bold mb-8">قوائم التشغيل</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-6xl">
               {playlists.map((playlist) => {
                 // Determine thumbnail: video first, else fetched playlist thumb
