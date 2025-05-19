@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import tafseerIntro from '../assets/tafseerIntro.js';
-import { getId } from '../assets/functions.jsx';
+import { getId, getThumbnailUrl } from '../assets/functions.jsx';
 import { VideoModal } from './VideoModal';
 
 const TafseerIntroPage = () => {
   const introData = tafseerIntro[0]; // There's only one item in the array
   const videoId = getId(introData.url); // Extract video ID from URL
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+  const thumbnailUrl = getThumbnailUrl(introData.url, '0');
 
   const [playingVideoId, setPlayingVideoId] = useState(null);
 
