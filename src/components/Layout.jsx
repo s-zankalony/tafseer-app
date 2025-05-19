@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar2';
+import { useGlobalContext } from './context';
 
 const Footer = memo(({ year }) => (
   <footer
@@ -41,11 +42,16 @@ const Footer = memo(({ year }) => (
 
 const Layout = ({ children }) => {
   const year = new Date().getFullYear();
+  const { activeTab } = useGlobalContext();
 
   return (
     <div className="flex flex-col min-h-screen bg-green-50 w-full overflow-x-hidden">
       <Sidebar>
-        <div className="flex-grow px-2 sm:px-4 pt-24 md:pt-28 lg:pt-24 pb-16 w-full">
+        <div
+          className={`flex-grow px-2 sm:px-4 pt-24 md:pt-28 lg:pt-24 pb-16 w-full ${
+            activeTab === 'other' ? 'sm:px-8' : ''
+          }`}
+        >
           {children}
         </div>
       </Sidebar>

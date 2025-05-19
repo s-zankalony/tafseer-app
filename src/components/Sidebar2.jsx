@@ -1,7 +1,12 @@
 import { FaAlignJustify } from 'react-icons/fa';
-import sidebarImage from '../assets/sidebar.gif';
-import playlists from '../assets/playlists';
-import { useContext, useMemo, useCallback, memo, useEffect } from 'react';
+import {
+  useContext,
+  useMemo,
+  useCallback,
+  memo,
+  useEffect,
+  useState,
+} from 'react';
 import { AppContext } from './context';
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarPlaylist from './SidebarPlaylist';
@@ -31,6 +36,7 @@ const Sidebar2 = ({ children }) => {
     setActiveTab,
   } = useContext(AppContext);
   const location = useLocation();
+  const [showHadithSidebar, setShowHadithSidebar] = useState(false);
 
   // Reset to tafseer tab when navigating back to the home page
   useEffect(() => {
@@ -75,6 +81,16 @@ const Sidebar2 = ({ children }) => {
 
   // Check if we're on the homepage
   const isHomePage = location.pathname === '/';
+
+  // Effect to handle displaying the appropriate sidebar based on activeTab
+  useEffect(() => {
+    setShowHadithSidebar(activeTab === 'hadith');
+  }, [activeTab]);
+
+  // Don't show sidebar when "other" tab is active
+  if (activeTab === 'other') {
+    return <div className="flex min-h-screen relative">{children}</div>;
+  }
 
   return (
     <div className="flex min-h-screen relative">

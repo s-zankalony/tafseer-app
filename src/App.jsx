@@ -6,6 +6,7 @@ import Playlists from './components/Playlists';
 import Biography from './components/Biography';
 import TafseerIntroPage from './components/TafseerIntroPage';
 import HadithIntroPage from './components/HadithIntroPage';
+import OtherContentPage from './components/OtherContentPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/biography" element={<Biography />} />
           <Route path="/tafseer-intro" element={<TafseerIntroPage />} />
           <Route path="/hadith-intro" element={<HadithIntroPage />} />
+          <Route path="/other-content" element={<OtherContentPage />} />
         </Routes>
       </Layout>
     </Router>
