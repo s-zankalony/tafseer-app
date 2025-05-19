@@ -36,6 +36,8 @@ const Sidebar2 = ({ children }) => {
     setActiveTab,
   } = useContext(AppContext);
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const isHadithPage = location.pathname === '/bukhari';
   const [showHadithSidebar, setShowHadithSidebar] = useState(false);
 
   // Reset to 'tafseer' tab once on initial mount if we're on the home page
@@ -73,9 +75,6 @@ const Sidebar2 = ({ children }) => {
     }
   }, [toggleSidebar]);
 
-  // Check if we're on the homepage
-  const isHomePage = location.pathname === '/';
-
   // Effect to track hadith/tab visibility
   useEffect(() => {
     setShowHadithSidebar(activeTab === 'hadith');
@@ -96,32 +95,22 @@ const Sidebar2 = ({ children }) => {
       >
         <div className="h-full overflow-y-auto bg-green-100">
           <ul className="space-y-2 font-bold mt-16 px-2">
-            <li>
-              <SidebarLink
-                to="/biography"
-                isActive={location.pathname === '/biography'}
-                onClick={handleLinkClick}
-              >
-                نبذة عن الشيخ
-              </SidebarLink>
-            </li>
+            <li className="p-2" /> {/* placeholder to maintain space */}
           </ul>
-          <hr className="my-4 border-t border-green-300" />
+          <div className="my-4" /> {/* preserve divider spacing */}
           <div className="px-2">
-            {isHomePage && (
+            {/* Playlist on home–tafseer only */}
+            {isHomePage && activeTab === 'tafseer' && (
               <>
-                {activeTab === 'tafseer' ? (
-                  <>
-                    <h3 className="text-lg font-bold text-green-800 mb-2">
-                      قوائم التشغيل المتاحة:
-                    </h3>
-                    <SidebarPlaylist />
-                  </>
-                ) : (
-                  <SidebarHadithJuz />
-                )}
+                <h3 className="text-lg font-bold text-green-800 mb-2">
+                  قوائم التشغيل المتاحة:
+                </h3>
+                <SidebarPlaylist />
               </>
             )}
+
+            {/* Hadith‐Juz on /bukhari only */}
+            {isHadithPage && <SidebarHadithJuz />}
           </div>
         </div>
       </aside>

@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { NavLink } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar2';
 import { useGlobalContext } from './context';
@@ -35,6 +36,12 @@ const Footer = memo(({ year }) => (
         >
           sameh@zankalony.com
         </a>
+        <NavLink
+          to="/about"
+          className="ml-4 text-lg font-bold bg-green-700 text-white px-3 py-1 rounded hover:bg-green-600 transition-colors duration-300"
+        >
+          عن الموقع
+        </NavLink>
       </div>
     </div>
   </footer>

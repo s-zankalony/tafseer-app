@@ -62,7 +62,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/Playlists"
+                  to="/bukhari"
                   className={({ isActive }) =>
                     isActive
                       ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
@@ -70,12 +70,12 @@ const Navbar = () => {
                   }
                   onClick={() => isSidebarOpen && toggleSidebar()}
                 >
-                  قوائم التشغيل
+                  صحيح البخاري
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/about"
+                  to="/other-content"
                   className={({ isActive }) =>
                     isActive
                       ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
@@ -83,7 +83,20 @@ const Navbar = () => {
                   }
                   onClick={() => isSidebarOpen && toggleSidebar()}
                 >
-                  عن الموقع
+                  علوم أخرى
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/biography"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
+                  }
+                  onClick={() => isSidebarOpen && toggleSidebar()}
+                >
+                  نبذة عن الشيخ
                 </NavLink>
               </li>
             </ul>
