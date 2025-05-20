@@ -55,7 +55,7 @@ const Layout = ({ children }) => {
     <div className="flex flex-col min-h-screen bg-green-50 w-full overflow-x-hidden">
       <Sidebar>
         <div
-          className={`flex-grow px-2 sm:px-4 pt-24 md:pt-28 lg:pt-24 pb-16 w-full ${
+          className={`flex-grow px-2 sm:px-4 pt-32 sm:pt-24 md:pt-28 lg:pt-24 pb-16 w-full ${
             activeTab === 'other' ? 'sm:px-8' : ''
           }`}
         >
