@@ -129,3 +129,20 @@ body {
   color: #645cff;
   text-transform: capitalize;
 }
+
+/* Styles for Markdown content paragraphs */
+.prose p {
+  line-height: 2.5; /* Increased line-height for better readability */
+  margin-bottom: 1em; /* Creates space equivalent to one line of text after each paragraph */
+}
+
+/* Center alignment override for specific elements */
+.prose .text-center p,
+.prose p.text-center {
+  text-align: center !important;
+}
+
+/* Ensure paragraphs inside .prose also respect text-align if needed */
+.prose.text-right p {
+  text-align: right;
+}

@@ -33,9 +33,7 @@ const Navbar = () => {
                   alt="Quran Icon"
                 />
                 <span className="font-ptbldhad text-lg sm:text-xl font-bold whitespace-normal sm:whitespace-nowrap text-green-800 text-center sm:text-right">
-                  تفسير القرآن وشرح صحيح البخاري
-                  <br className="inline sm:hidden" />
-                  <span className="block sm:inline"> للشيخ/ ياسين رشدي</span>
+                  من تراث الشيخ ياسين رشدي
                 </span>
               </div>
             </NavLink>
@@ -57,7 +55,7 @@ const Navbar = () => {
                     isSidebarOpen && toggleSidebar();
                   }}
                 >
-                  الرئيسية
+                  تفسير القرآن
                 </NavLink>
               </li>
               <li>
