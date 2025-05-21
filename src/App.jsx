@@ -7,6 +7,7 @@ import TafseerIntroPage from './components/TafseerIntroPage';
 import HadithIntroPage from './components/HadithIntroPage';
 import OtherContentPage from './components/OtherContentPage';
 import DisplayHadith from './components/DisplayHadith';
+import RamadanContentPage from './components/RamadanContentPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/tafseer-intro" element={<TafseerIntroPage />} />
           <Route path="/hadith-intro" element={<HadithIntroPage />} />
           <Route path="/bukhari" element={<DisplayHadith />} />
+          <Route path="/ramadan" element={<RamadanContentPage />} />
           <Route path="/other-content" element={<OtherContentPage />} />
         </Routes>
       </Layout>

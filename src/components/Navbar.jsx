@@ -73,6 +73,19 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
+                  to="/ramadan"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
+                  }
+                  onClick={() => isSidebarOpen && toggleSidebar()}
+                >
+                  مجالس رمضان
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to="/other-content"
                   className={({ isActive }) =>
                     isActive
@@ -82,19 +95,6 @@ const Navbar = () => {
                   onClick={() => isSidebarOpen && toggleSidebar()}
                 >
                   علوم أخرى
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/biography"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
-                  }
-                  onClick={() => isSidebarOpen && toggleSidebar()}
-                >
-                  نبذة عن الشيخ
                 </NavLink>
               </li>
             </ul>

@@ -9,39 +9,51 @@ const Footer = memo(({ year }) => (
     dir="ltr"
     className="bg-green-800 text-white py-4 border-t-2 border-green-600 w-full relative z-10"
   >
-    <div className="mx-4 sm:mr-60 sm:ml-4 flex flex-col sm:flex-row justify-between items-center">
-      <div className="mb-2 sm:mb-0">
-        <p className="text-sm font-semibold">
-          &copy; {year} Sameh El Zankalony
-        </p>
-        <p className="text-xs text-green-300">
-          Tafseer Al-Quran Al-Kareem - Sheikh Yassin Roushdy
-        </p>
-      </div>
-      <div className="flex items-center">
-        <span className="mr-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+    <div className="mx-4 sm:mr-60 sm:ml-4">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4 pb-4 border-b border-green-600">
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+          <NavLink
+            to="/about"
+            className="text-lg font-bold bg-green-700 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors duration-300"
           >
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-          </svg>
-        </span>
-        <a
-          href="mailto:sameh@zankalony.com"
-          className="text-sm hover:text-green-300 transition-colors duration-300"
-        >
-          sameh@zankalony.com
-        </a>
-        <NavLink
-          to="/about"
-          className="ml-4 text-lg font-bold bg-green-700 text-white px-3 py-1 rounded hover:bg-green-600 transition-colors duration-300"
-        >
-          عن الموقع
-        </NavLink>
+            عن الموقع
+          </NavLink>
+          <NavLink
+            to="/biography"
+            className="text-lg font-bold bg-green-700 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors duration-300"
+          >
+            نبذة عن الشيخ
+          </NavLink>
+        </div>
+      </div>
+      <div className="flex flex-col sm:flex-row justify-between items-center">
+        <div className="mb-2 sm:mb-0">
+          <p className="text-sm font-semibold">
+            &copy; {year} Sameh El Zankalony
+          </p>
+          <p className="text-xs text-green-300">
+            Tafseer Al-Quran Al-Kareem - Sheikh Yassin Roushdy
+          </p>
+        </div>
+        <div className="flex items-center">
+          <span className="mr-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+          </span>
+          <a
+            href="mailto:sameh@zankalony.com"
+            className="text-sm hover:text-green-300 transition-colors duration-300"
+          >
+            sameh@zankalony.com
+          </a>
+        </div>
       </div>
     </div>
   </footer>
