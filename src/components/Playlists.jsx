@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import playlists from '../assets/playlists';
 import { getId, getPlaylistId, getThumbnailUrl } from '../assets/functions';
+import { VideoModal } from './VideoModal';
 
 const Playlists = () => {
   const [playlistThumbnails, setPlaylistThumbnails] = useState({});
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+  const [playingPlaylistId, setPlayingPlaylistId] = useState(null);
 
   useEffect(() => {
     playlists.forEach((playlist) => {
@@ -25,11 +28,22 @@ const Playlists = () => {
     });
   }, []);
 
+  const handleVideoPlay = useCallback((videoId, playlistId) => {
+    setPlayingVideoId(videoId);
+    setPlayingPlaylistId(playlistId);
+  }, []);
+
+  const handleCloseVideo = useCallback(() => {
+    setPlayingVideoId(null);
+    setPlayingPlaylistId(null);
+  }, []);
+
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-screen text-green-800 text-center p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-6xl">
         {playlists.map((playlist) => {
           const vid = getId(playlist.url);
+          const pid = getPlaylistId(playlist.url);
           const thumbnailUrl = vid
             ? getThumbnailUrl(playlist.url)
             : playlistThumbnails[playlist.id] || null;
@@ -47,6 +61,18 @@ const Playlists = () => {
                     loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover rounded"
                   />
+                  <button
+                    onClick={() => {
+                      vid
+                        ? handleVideoPlay(vid, null)
+                        : pid && handleVideoPlay(null, pid);
+                    }}
+                    className="absolute inset-0 w-full h-full flex items-center justify-center bg-black bg-opacity-20 hover:bg-opacity-30 transition-opacity"
+                  >
+                    <svg className="w-16 h-16 text-white" viewBox="0 0 24 24">
+                      <path fill="currentColor" d="M8 5v14l11-7z" />
+                    </svg>
+                  </button>
                 </div>
               )}
               <h2 className="text-xl font-semibold mb-2">{playlist.sura}</h2>
@@ -62,6 +88,15 @@ const Playlists = () => {
           );
         })}
       </div>
+
+      {/* Video Modal */}
+      {(playingVideoId || playingPlaylistId) && (
+        <VideoModal
+          videoId={playingVideoId}
+          playlistId={playingPlaylistId}
+          onClose={handleCloseVideo}
+        />
+      )}
     </div>
   );
 };
