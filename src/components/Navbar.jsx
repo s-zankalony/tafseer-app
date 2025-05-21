@@ -68,7 +68,7 @@ const Navbar = () => {
                   }
                   onClick={() => isSidebarOpen && toggleSidebar()}
                 >
-                  صحيح البخاري
+                  شرح صحيح البخاري
                 </NavLink>
               </li>
               <li>
