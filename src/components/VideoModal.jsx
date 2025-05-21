@@ -1,9 +1,12 @@
 // VideoModal.jsx
-export function VideoModal({ videoId, startTime, onClose }) {
-  if (!videoId) return null;
+export function VideoModal({ videoId, playlistId, startTime, onClose }) {
+  if (!videoId && !playlistId) return null;
 
-  // Build the YouTube URL with the start time if available
-  let embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  // Build the YouTube URL with the appropriate parameters
+  let embedUrl = playlistId
+    ? `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1`
+    : `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+
   if (startTime) {
     embedUrl += `&start=${startTime}`;
   }

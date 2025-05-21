@@ -5,14 +5,17 @@ import { VideoModal } from './VideoModal';
 
 function OtherContentPage() {
   const [playingVideoId, setPlayingVideoId] = useState(null);
+  const [playingPlaylistId, setPlayingPlaylistId] = useState(null);
   const [playlistThumbnails, setPlaylistThumbnails] = useState({});
 
-  const handleVideoPlay = useCallback((videoId) => {
+  const handleVideoPlay = useCallback((videoId, playlistId) => {
     setPlayingVideoId(videoId);
+    setPlayingPlaylistId(playlistId);
   }, []);
 
   const handleCloseVideo = useCallback(() => {
     setPlayingVideoId(null);
+    setPlayingPlaylistId(null);
   }, []);
 
   useEffect(() => {
@@ -64,7 +67,13 @@ function OtherContentPage() {
                     className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
                   />
                   <button
-                    onClick={() => videoId && handleVideoPlay(videoId)}
+                    onClick={() => {
+                      const vid = videoId;
+                      const pid = playlistId;
+                      vid
+                        ? handleVideoPlay(vid, null)
+                        : pid && handleVideoPlay(null, pid);
+                    }}
                     className="absolute inset-0 w-full h-full flex items-center justify-center bg-black bg-opacity-20 hover:bg-opacity-30 transition-opacity"
                   >
                     <svg className="w-16 h-16 text-white" viewBox="0 0 24 24">
@@ -99,8 +108,12 @@ function OtherContentPage() {
       </div>
 
       {/* Video Modal */}
-      {playingVideoId && (
-        <VideoModal videoId={playingVideoId} onClose={handleCloseVideo} />
+      {(playingVideoId || playingPlaylistId) && (
+        <VideoModal
+          videoId={playingVideoId}
+          playlistId={playingPlaylistId}
+          onClose={handleCloseVideo}
+        />
       )}
     </div>
   );
