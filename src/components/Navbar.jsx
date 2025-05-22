@@ -40,76 +40,80 @@ const Navbar = () => {
             <div className="w-8 sm:hidden"></div>
           </div>
           <div className="w-full sm:w-auto" id="navbar-default">
-            <ul className="font-bold flex justify-center sm:justify-start space-x-4 space-x-reverse">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
-                  }
-                  aria-current="page"
-                  onClick={() => {
-                    resetSearchTerm();
-                    isSidebarOpen && toggleSidebar();
-                  }}
-                >
-                  تفسير القرآن
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/bukhari"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
-                  }
-                  onClick={() => isSidebarOpen && toggleSidebar()}
-                >
-                  شرح صحيح البخاري
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/ramadan"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
-                  }
-                  onClick={() => isSidebarOpen && toggleSidebar()}
-                >
-                  مجالس رمضان
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/other-content"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
-                  }
-                  onClick={() => isSidebarOpen && toggleSidebar()}
-                >
-                  علوم أخرى
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/books"
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
-                      : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
-                  }
-                  onClick={() => isSidebarOpen && toggleSidebar()}
-                >
-                  الكتب
-                </NavLink>
-              </li>
+            <ul className="flex flex-wrap gap-2 justify-center lg:justify-start">
+              <div className="flex gap-2 w-full sm:w-auto justify-center">
+                <li>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                        : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
+                    }
+                    aria-current="page"
+                    onClick={() => {
+                      resetSearchTerm();
+                      isSidebarOpen && toggleSidebar();
+                    }}
+                  >
+                    تفسير القرآن
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/bukhari"
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                        : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
+                    }
+                    onClick={() => isSidebarOpen && toggleSidebar()}
+                  >
+                    شرح صحيح البخاري
+                  </NavLink>
+                </li>
+              </div>
+              <div className="flex gap-2 w-full sm:w-auto justify-center">
+                <li>
+                  <NavLink
+                    to="/ramadan"
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                        : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
+                    }
+                    onClick={() => isSidebarOpen && toggleSidebar()}
+                  >
+                    مجالس رمضان
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/other-content"
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                        : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
+                    }
+                    onClick={() => isSidebarOpen && toggleSidebar()}
+                  >
+                    علوم أخرى
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/books"
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'block py-1 px-2 text-green-100 bg-green-700 rounded font-bold'
+                        : 'block py-1 px-2 text-green-900 rounded hover:bg-green-200 hover:text-green-700 font-bold'
+                    }
+                    onClick={() => isSidebarOpen && toggleSidebar()}
+                  >
+                    الكتب
+                  </NavLink>
+                </li>
+              </div>
             </ul>
           </div>
         </div>

@@ -74,13 +74,17 @@ body {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0.5rem;
+  /* push content below fixed navbar */
+  padding-top: 4rem; /* space for 2-row navbar on xxs */
+  padding-inline: 0.5rem; /* left/right padding as before */
   text-align: center;
 }
 
+/* adjust padding when nav collapses to single row at ≥470px */
 @media (min-width: 470px) {
   #root {
-    padding: 1rem;
+    padding-top: 3rem; /* space for 1-row navbar on sm+ */
+    padding-inline: 1rem; /* your existing horizontal padding */
   }
 }
 
