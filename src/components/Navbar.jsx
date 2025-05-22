@@ -107,7 +107,7 @@ const Navbar = () => {
                   }
                   onClick={() => isSidebarOpen && toggleSidebar()}
                 >
-                  كتب
+                  الكتب
                 </NavLink>
               </li>
             </ul>
