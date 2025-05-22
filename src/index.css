@@ -1,11 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap'); /* Arabic optimized font */
 
-/* Import PT Heading Bold font */
+/* Import Amiri font from assets */
 @font-face {
-  font-family: 'PT Heading Bold';
-  src: url('./assets/PTBLDHAD.TTF') format('truetype');
+  font-family: 'Amiri';
+  src: url('./assets/Amiri-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Import Amiri Bold font from assets */
+@font-face {
+  font-family: 'AmiriBold';
+  src: url('./assets/Amiri-Bold.ttf') format('truetype');
   font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Import custom font PTBLDHAD from assets */
+@font-face {
+  font-family: 'PTBLDHAD';
+  src: url('./assets/PTBLDHAD.TTF') format('truetype');
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
@@ -13,6 +30,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Utility class for Amiri font */
+.font-amiri {
+  font-family: 'Amiri', serif;
+}
+
+/* Utility class for Amiri Bold */
+.font-amiri-bold {
+  font-family: 'AmiriBold', serif !important;
+}
+
+/* Ensure the utility exists even if Tailwind rebuild is pending */
+.font-ptbldhad {
+  font-family: 'PTBLDHAD', sans-serif !important;
+}
 
 *,
 ::after,
@@ -23,28 +55,16 @@
 }
 
 :root {
-  font-family: 'PT Sans', 'Segoe UI', Tahoma, sans-serif;
+  /* use Cairo globally */
+  font-family: 'Cairo', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #cac8c8;
-
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-html[lang='ar'],
-[dir='rtl'] {
-  font-family: 'Cairo', 'PT Sans', sans-serif;
-}
-
-.arabic-heading {
-  font-family: 'PT Heading Bold', 'Traditional Arabic', sans-serif !important;
-  font-weight: bold;
 }
 
 body {
@@ -54,13 +74,17 @@ body {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0.5rem;
+  /* push content below fixed navbar */
+  padding-top: 4rem; /* space for 2-row navbar on xxs */
+  padding-inline: 0.5rem; /* left/right padding as before */
   text-align: center;
 }
 
+/* adjust padding when nav collapses to single row at ≥470px */
 @media (min-width: 470px) {
   #root {
-    padding: 1rem;
+    padding-top: 3rem; /* space for 1-row navbar on sm+ */
+    padding-inline: 1rem; /* your existing horizontal padding */
   }
 }
 
@@ -108,4 +132,21 @@ body {
 .links a {
   color: #645cff;
   text-transform: capitalize;
+}
+
+/* Styles for Markdown content paragraphs */
+.prose p {
+  line-height: 2.5; /* Increased line-height for better readability */
+  margin-bottom: 1em; /* Creates space equivalent to one line of text after each paragraph */
+}
+
+/* Center alignment override for specific elements */
+.prose .text-center p,
+.prose p.text-center {
+  text-align: center !important;
+}
+
+/* Ensure paragraphs inside .prose also respect text-align if needed */
+.prose.text-right p {
+  text-align: right;
 }

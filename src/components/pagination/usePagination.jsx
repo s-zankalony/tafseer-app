@@ -60,11 +60,16 @@ export const usePagination = ({
       return [firstPageIndex, DOTS, ...rightRange];
     }
 
+    // Add this case for when both left and right dots should be shown
     if (shouldShowLeftDots && shouldShowRightDots) {
       let middleRange = range(leftSiblingIndex, rightSiblingIndex);
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
     }
+
+    // Default fallback - should not normally reach here
+    return range(1, totalPageCount);
   }, [totalCount, pageSize, siblingCount, currentPage]);
 
+  // Make sure we return the result
   return paginationRange;
 };

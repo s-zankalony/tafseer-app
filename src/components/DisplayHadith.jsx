@@ -1,7 +1,7 @@
 import React, { memo, useState, useCallback, useMemo, useEffect } from 'react';
 import Pagination from './pagination/Pagination';
 import { useGlobalContext } from './context';
-import { getId } from '../assets/functions';
+import { getId, getThumbnailUrl } from '../assets/functions';
 import { VideoModal } from './VideoModal';
 import { NavLink } from 'react-router-dom';
 
@@ -188,8 +188,8 @@ const DisplayHadith = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 xxs:gap-2 sm:gap-4 my-4 auto-rows-fr mx-auto">
               {currentHadithData.map((item, index) => {
                 const videoId = item.url && getId(item.url);
-                const thumbnailUrl = videoId
-                  ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+                const thumbnailUrl = item.url
+                  ? getThumbnailUrl(item.url)
                   : null;
 
                 return (

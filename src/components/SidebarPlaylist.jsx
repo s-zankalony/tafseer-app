@@ -1,6 +1,7 @@
 import { useContext, memo, useMemo } from 'react';
 import { AppContext } from './context';
 import playlists from '../assets/playlists'; // Import playlists at the top level
+import { getThumbnailUrl } from '../assets/functions';
 
 const SidebarPlaylist = () => {
   const { visibleSuras } = useContext(AppContext);

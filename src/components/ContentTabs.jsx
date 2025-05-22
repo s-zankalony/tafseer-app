@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DisplayLinks from './DisplayLinks';
-import DisplayHadith from './DisplayHadith';
+import Playlists from './Playlists';
 import { useGlobalContext } from './context';
 
 const ContentTabs = () => {
@@ -42,13 +42,14 @@ const ContentTabs = () => {
               }`}
               onClick={() => handleTabChange('hadith')}
             >
-              شرح صحيح البخاري
+              قوائم التشغيل
             </button>
           </li>
         </ul>
       </div>
       <div className="mt-4">
-        {localActiveTab === 'tafseer' ? <DisplayLinks /> : <DisplayHadith />}
+        {localActiveTab === 'tafseer' && <DisplayLinks />}
+        {localActiveTab === 'hadith' && <Playlists />}
       </div>
     </div>
   );
