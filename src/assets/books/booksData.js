@@ -157,7 +157,7 @@ const booksData = [
   // French Books
   {
     id: 'cest-lui',
-    name: "C'est lui",
+    name: "C'est Lui Allah",
     thumbnail: "/books/thumbnails/1 C'est lui.png",
     language: 'fr',
     pdf: "/books/french/1 C'est lui.pdf",
@@ -171,7 +171,7 @@ const booksData = [
   },
   {
     id: 'lislam-et-ses-pillers',
-    name: "l'Islam et ses Pillers",
+    name: "L'Islam et ses Pillers",
     thumbnail: "/books/thumbnails/2 l'Islam et ses Pillers.png",
     language: 'fr',
     pdf: "/books/french/2 l'Islam et ses Pillers.pdf",
