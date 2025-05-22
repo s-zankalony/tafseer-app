@@ -8,6 +8,7 @@ import HadithIntroPage from './components/HadithIntroPage';
 import OtherContentPage from './components/OtherContentPage';
 import DisplayHadith from './components/DisplayHadith';
 import RamadanContentPage from './components/RamadanContentPage';
+import Books from './pages/Books'; // Import the Books component
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/bukhari" element={<DisplayHadith />} />
           <Route path="/ramadan" element={<RamadanContentPage />} />
           <Route path="/other-content" element={<OtherContentPage />} />
+          <Route path="/books" element={<Books />} />{' '}
+          {/* Add the new route for Books */}
         </Routes>
       </Layout>
     </Router>
