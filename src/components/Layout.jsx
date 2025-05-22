@@ -11,7 +11,7 @@ const Footer = memo(({ year }) => (
   >
     <div className="mx-4 sm:mr-60 sm:ml-4">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-4 pb-4 border-b border-green-600">
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+        <div className="flex flex-col-reverse sm:flex-row items-center gap-4 w-full justify-center">
           <NavLink
             to="/about"
             className="text-lg font-bold bg-green-700 text-white px-6 py-2 rounded hover:bg-green-600 transition-colors duration-300"
