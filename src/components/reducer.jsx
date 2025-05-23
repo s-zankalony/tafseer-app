@@ -24,6 +24,9 @@ export const reducer = (state, action) => {
     case 'SET_ACTIVE_TAB':
       return { ...state, activeTab: action.payload };
 
+    case 'SET_HADITH_ACTIVE_TAB':
+      return { ...state, hadithActiveTab: action.payload };
+
     default:
       console.warn(`Unhandled action type: ${action.type}`);
       return state;

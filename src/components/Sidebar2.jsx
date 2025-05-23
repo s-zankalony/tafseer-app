@@ -34,6 +34,7 @@ const Sidebar2 = ({ children }) => {
     selectedSura,
     activeTab,
     setActiveTab,
+    hadithActiveTab,
   } = useContext(AppContext);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -110,7 +111,9 @@ const Sidebar2 = ({ children }) => {
             )}
 
             {/* Hadith‐Juz on /bukhari only */}
-            {isHadithPage && <SidebarHadithJuz />}
+            {isHadithPage && hadithActiveTab === 'hadith' && (
+              <SidebarHadithJuz />
+            )}
           </div>
         </div>
       </aside>
