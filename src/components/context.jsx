@@ -12,6 +12,7 @@ import linksData from '../assets/links';
 import hadithData from '../assets/hadith';
 import { reducer } from './reducer.jsx';
 import playlists from '../assets/playlists';
+import hadithPlaylists from '../assets/hadithPlaylists';
 
 const initialState = {
   links: linksData,
@@ -23,6 +24,7 @@ const initialState = {
   currentPlaylists: [],
   hadith: hadithData,
   activeTab: 'tafseer', // Add this to track active tab
+  hadithActiveTab: 'hadith', // Add this to track active tab in hadith page
 };
 
 export const AppContext = createContext();
@@ -34,6 +36,7 @@ export const AppProvider = ({ children }) => {
   const [selectedSura, setSelectedSura] = useState('');
   const [selectedJuz, setSelectedJuz] = useState(null);
   const [visibleSuras, setVisibleSuras] = useState([]);
+  const [hadithActiveTab, setHadithActiveTab] = useState('hadith');
 
   const normalizeString = useCallback((str) => {
     return str
@@ -167,6 +170,7 @@ export const AppProvider = ({ children }) => {
         resetSearchTerm: () =>
           dispatch({ type: 'SET_SEARCH_TERM', payload: '' }),
         currentPlaylists: state.currentPlaylists,
+        hadithPlaylists,
         selectedSura,
         updateSelectedSura,
         setActiveTab: (tab) =>
@@ -175,6 +179,8 @@ export const AppProvider = ({ children }) => {
         setSelectedJuz,
         visibleSuras,
         updateVisibleSuras,
+        hadithActiveTab,
+        setHadithActiveTab,
       }}
     >
       {children}
