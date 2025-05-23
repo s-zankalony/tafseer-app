@@ -4,7 +4,11 @@ const other = [
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAXcggfnoJB6_4FwfRSO73w_&feature=shared',
   },
   {
-    name: 'شرح كتاب "الإسلام وأركانه"',
+    name: 'خطب تفسير القرآن مقسمة إلى مقاطع بدون مقدمات الخطب والدعاء',
+    url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAVx-h7irZS2PRjVQcFhD-Pa&feature=shared',
+  },
+  {
+    name: 'شرح كتاب "الإسلام وأركانه" (يوليو 1977م - أكتوبر 1978م)',
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAUpelco5UxJOn58c6sqFzx1&feature=shared',
   },
   {
@@ -20,11 +24,11 @@ const other = [
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAWXOQlKty0vBMpfB5L03Nxf&feature=shared',
   },
   {
-    name: 'إجابات أسـئلة رواد مسـجد مصطفى محمود بالقاهرة',
+    name: 'من إجابات أسـئلة رواد مسـجد مصطفى محمود بالقاهرة',
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAXKn6eIysXCdgYBJfTxwfic&feature=shared',
   },
   {
-    name: 'فصة موسى والخضر',
+    name: 'قصة موسى والخضر',
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAW0NuUfFipvc9tywUecLEAm&feature=shared',
   },
   {
