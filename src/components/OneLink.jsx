@@ -1,14 +1,15 @@
 import { memo, useState } from 'react';
 import { VideoModal } from './VideoModal';
+import { getId, getThumbnailUrl } from '../assets/functions';
 
 const OneLink = ({ thumbSRC, link }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const videoId = thumbSRC.split('/').pop();
+  const videoId = getId(link.url);
 
   const thumbnailUrl = imageError
-    ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
-    : `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    ? getThumbnailUrl(link.url, 'mqdefault')
+    : getThumbnailUrl(link.url, 'hqdefault');
 
   return (
     <>
@@ -37,7 +38,7 @@ const OneLink = ({ thumbSRC, link }) => {
           </h4>
           <a
             target="_blank"
-            className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm"
+            className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm font-bold"
             href={link.url}
             rel="noopener noreferrer"
           >

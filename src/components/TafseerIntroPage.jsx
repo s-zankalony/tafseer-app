@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import tafseerIntro from '../assets/tafseerIntro.js';
-import { getId } from '../assets/functions.jsx';
+import { getId, getThumbnailUrl } from '../assets/functions.jsx';
+import { VideoModal } from './VideoModal';
 
 const TafseerIntroPage = () => {
   const introData = tafseerIntro[0]; // There's only one item in the array
   const videoId = getId(introData.url); // Extract video ID from URL
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+  const thumbnailUrl = getThumbnailUrl(introData.url, '0');
+
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+
+  const handleVideoPlay = useCallback(() => {
+    setPlayingVideoId(videoId);
+  }, [videoId]);
+
+  const handleCloseVideo = useCallback(() => {
+    setPlayingVideoId(null);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-50 to-green-100 text-green-800 text-center p-8">
@@ -14,7 +25,10 @@ const TafseerIntroPage = () => {
           مقدمة التفسير
         </h1>
         {/* <h2 className="text-2xl mb-6 text-green-500">{introData.sura}</h2> */}
-        <div className="relative group cursor-pointer mb-6">
+        <div
+          className="relative group cursor-pointer mb-6"
+          onClick={handleVideoPlay}
+        >
           <img
             src={thumbnailUrl}
             alt="Video Thumbnail"
@@ -39,6 +53,11 @@ const TafseerIntroPage = () => {
           شاهد المقدمة
         </a>
       </div>
+
+      {/* Video Modal */}
+      {playingVideoId && (
+        <VideoModal videoId={playingVideoId} onClose={handleCloseVideo} />
+      )}
     </div>
   );
 };

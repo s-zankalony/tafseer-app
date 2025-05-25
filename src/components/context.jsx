@@ -9,8 +9,10 @@ import {
 } from 'react';
 import debounce from 'lodash/debounce';
 import linksData from '../assets/links';
+import hadithData from '../assets/hadith';
 import { reducer } from './reducer.jsx';
 import playlists from '../assets/playlists';
+import hadithPlaylists from '../assets/hadithPlaylists';
 
 const initialState = {
   links: linksData,
@@ -19,7 +21,10 @@ const initialState = {
   searchTerm: '',
   currentPage: 1,
   selectedSura: '',
-  currentPlaylists: [], // Add this line
+  currentPlaylists: [],
+  hadith: hadithData,
+  activeTab: 'tafseer', // Add this to track active tab
+  hadithActiveTab: 'hadith', // Add this to track active tab in hadith page
 };
 
 export const AppContext = createContext();
@@ -29,6 +34,9 @@ const PAGE_SIZE = 9;
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [selectedSura, setSelectedSura] = useState('');
+  const [selectedJuz, setSelectedJuz] = useState(null);
+  const [visibleSuras, setVisibleSuras] = useState([]);
+  const [hadithActiveTab, setHadithActiveTab] = useState('hadith');
 
   const normalizeString = useCallback((str) => {
     return str
@@ -98,8 +106,6 @@ export const AppProvider = ({ children }) => {
     return [...exactMatches, ...partialMatches];
   }, [state.links, state.searchTerm, normalizeString]);
 
-  // ... (rest of the code remains the same)
-
   const currentLinksData = useMemo(() => {
     const firstPageIndex = (state.currentPage - 1) * PAGE_SIZE;
     const lastPageIndex = firstPageIndex + PAGE_SIZE;
@@ -143,6 +149,11 @@ export const AppProvider = ({ children }) => {
     [state.links]
   );
 
+  // Function to update visible suras from DisplayLinks
+  const updateVisibleSuras = useCallback((suras) => {
+    setVisibleSuras(suras);
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -159,16 +170,23 @@ export const AppProvider = ({ children }) => {
         resetSearchTerm: () =>
           dispatch({ type: 'SET_SEARCH_TERM', payload: '' }),
         currentPlaylists: state.currentPlaylists,
+        hadithPlaylists,
         selectedSura,
         updateSelectedSura,
+        setActiveTab: (tab) =>
+          dispatch({ type: 'SET_ACTIVE_TAB', payload: tab }),
+        selectedJuz,
+        setSelectedJuz,
+        visibleSuras,
+        updateVisibleSuras,
+        hadithActiveTab,
+        setHadithActiveTab,
       }}
     >
       {children}
     </AppContext.Provider>
   );
 };
-
-// ... (rest of the file remains the same)
 
 export const useGlobalContext = () => {
   return useContext(AppContext);

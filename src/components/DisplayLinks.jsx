@@ -1,14 +1,15 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo, useState, useCallback, useEffect } from 'react';
 import OneLink from './OneLink';
 import Pagination from './pagination/Pagination';
 import SuraVerseSelect from './SuraVerseSelect';
 import { useGlobalContext } from './context';
 import { getId } from '../assets/functions';
+import { NavLink } from 'react-router-dom';
 
 const PAGE_SIZE = 9;
 
 const DisplayLinks = () => {
-  const { links, updateSelectedSura } = useGlobalContext();
+  const { links, updateSelectedSura, updateVisibleSuras } = useGlobalContext();
   const [selectedSura, setSelectedSura] = useState(null);
   const [selectedVerse, setSelectedVerse] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,6 +30,12 @@ const DisplayLinks = () => {
     return filteredLinks.slice(indexOfFirstLink, indexOfLastLink);
   }, [filteredLinks, currentPage]);
 
+  // Update the visible suras when currentLinksData changes
+  useEffect(() => {
+    const uniqueSuras = [...new Set(currentLinksData.map((link) => link.sura))];
+    updateVisibleSuras(uniqueSuras);
+  }, [currentLinksData, updateVisibleSuras]);
+
   const handleSuraChange = useCallback(
     (sura) => {
       setSelectedSura(sura);
@@ -47,6 +54,20 @@ const DisplayLinks = () => {
   return (
     <div className="w-full max-w-full overflow-hidden xxs:px-1 xs:px-2 sm:px-4">
       <div className="max-w-[95vw] mx-auto">
+        {/* Added Introduction Link */}
+        <div className="mb-6 flex justify-center">
+          <NavLink
+            to="/tafseer-intro"
+            className={({ isActive }) =>
+              isActive
+                ? 'flex items-center py-2 px-4 bg-green-700 text-white rounded-lg shadow-md font-bold'
+                : 'flex items-center py-2 px-4 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-colors duration-300 font-bold'
+            }
+          >
+            مقدمة تفسير القرآن
+          </NavLink>
+        </div>
+
         <SuraVerseSelect
           links={links}
           selectedSura={selectedSura}
