@@ -35,6 +35,7 @@ const Sidebar2 = ({ children }) => {
     activeTab,
     setActiveTab,
     hadithActiveTab,
+    playlists = [], // Add default empty array
   } = useContext(AppContext);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -53,7 +54,9 @@ const Sidebar2 = ({ children }) => {
   } fixed left-0 top-0 z-40 h-screen w-64 overflow-y-auto bg-white pt-16 transition-transform duration-300 ease-in-out sm:translate-x-0 sm:static sm:h-auto sm:w-64 sm:pt-0`;
 
   const filteredPlaylists = useMemo(() => {
-    if (!selectedSura) return [];
+    if (!playlists || playlists.length === 0) {
+      return [];
+    }
 
     return playlists.filter((playlist) => {
       const normalizedSura = normalizeString(selectedSura);
@@ -68,7 +71,7 @@ const Sidebar2 = ({ children }) => {
         normalizedSura.startsWith(normalizedPlaylistSura)
       );
     });
-  }, [selectedSura, normalizeString]);
+  }, [playlists, selectedSura, normalizeString]);
 
   const handleLinkClick = useCallback(() => {
     if (window.innerWidth < 640) {
