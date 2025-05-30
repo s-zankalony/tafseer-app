@@ -11,7 +11,7 @@ import debounce from 'lodash/debounce';
 import linksData from '../assets/links';
 import hadithData from '../assets/hadith';
 import { reducer } from './reducer.jsx';
-import playlists from '../assets/playlists';
+import playlistsData from '../assets/playlists';
 import hadithPlaylists from '../assets/hadithPlaylists';
 
 const initialState = {
@@ -37,6 +37,7 @@ export const AppProvider = ({ children }) => {
   const [selectedJuz, setSelectedJuz] = useState(null);
   const [visibleSuras, setVisibleSuras] = useState([]);
   const [hadithActiveTab, setHadithActiveTab] = useState('hadith');
+  const [playlists, setPlaylists] = useState(playlistsData);
 
   const normalizeString = useCallback((str) => {
     return str
@@ -123,7 +124,6 @@ export const AppProvider = ({ children }) => {
     ),
     []
   );
-
   const updateSelectedSura = useCallback(
     (sura) => {
       setSelectedSura(sura);
@@ -146,7 +146,7 @@ export const AppProvider = ({ children }) => {
         dispatch({ type: 'SET_CURRENT_PLAYLISTS', payload: [] });
       }
     },
-    [state.links]
+    [state.links, playlists]
   );
 
   // Function to update visible suras from DisplayLinks
@@ -154,38 +154,34 @@ export const AppProvider = ({ children }) => {
     setVisibleSuras(suras);
   }, []);
 
-  return (
-    <AppContext.Provider
-      value={{
-        ...state,
-        filteredLinks,
-        setLinks: (payload) => dispatch({ type: 'SET_LINKS', payload }),
-        setCurrentLinksData: (payload) =>
-          dispatch({ type: 'SET_CURRENT_LINKS_DATA', payload }),
-        setSearchTerm: debouncedSetSearchTerm,
-        setCurrentPage: (payload) =>
-          dispatch({ type: 'SET_CURRENT_PAGE', payload }),
-        toggleSidebar: () => dispatch({ type: 'TOGGLE_SIDEBAR' }),
-        normalizeString,
-        resetSearchTerm: () =>
-          dispatch({ type: 'SET_SEARCH_TERM', payload: '' }),
-        currentPlaylists: state.currentPlaylists,
-        hadithPlaylists,
-        selectedSura,
-        updateSelectedSura,
-        setActiveTab: (tab) =>
-          dispatch({ type: 'SET_ACTIVE_TAB', payload: tab }),
-        selectedJuz,
-        setSelectedJuz,
-        visibleSuras,
-        updateVisibleSuras,
-        hadithActiveTab,
-        setHadithActiveTab,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  );
+  const value = {
+    ...state,
+    filteredLinks,
+    setLinks: (payload) => dispatch({ type: 'SET_LINKS', payload }),
+    setCurrentLinksData: (payload) =>
+      dispatch({ type: 'SET_CURRENT_LINKS_DATA', payload }),
+    setSearchTerm: debouncedSetSearchTerm,
+    setCurrentPage: (payload) =>
+      dispatch({ type: 'SET_CURRENT_PAGE', payload }),
+    toggleSidebar: () => dispatch({ type: 'TOGGLE_SIDEBAR' }),
+    normalizeString,
+    resetSearchTerm: () => dispatch({ type: 'SET_SEARCH_TERM', payload: '' }),
+    currentPlaylists: state.currentPlaylists,
+    hadithPlaylists,
+    selectedSura,
+    updateSelectedSura,
+    setActiveTab: (tab) => dispatch({ type: 'SET_ACTIVE_TAB', payload: tab }),
+    selectedJuz,
+    setSelectedJuz,
+    visibleSuras,
+    updateVisibleSuras,
+    hadithActiveTab,
+    setHadithActiveTab,
+    playlists,
+    setPlaylists,
+  };
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
 export const useGlobalContext = () => {
