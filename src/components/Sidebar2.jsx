@@ -52,13 +52,16 @@ const Sidebar2 = ({ children }) => {
   const sidebarClasses = `transform ${
     isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
   } fixed left-0 top-0 z-40 h-screen w-64 overflow-y-auto bg-white pt-16 transition-transform duration-300 ease-in-out sm:translate-x-0 sm:static sm:h-auto sm:w-64 sm:pt-0`;
-
   const filteredPlaylists = useMemo(() => {
-    if (!playlists || playlists.length === 0) {
+    if (!playlists?.length) {
       return [];
     }
 
     return playlists.filter((playlist) => {
+      if (!selectedSura || !playlist?.sura) {
+        return false;
+      }
+
       const normalizedSura = normalizeString(selectedSura);
       const normalizedPlaylistSura = normalizeString(playlist.sura);
 
