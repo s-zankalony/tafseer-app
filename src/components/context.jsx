@@ -124,7 +124,6 @@ export const AppProvider = ({ children }) => {
     ),
     []
   );
-
   const updateSelectedSura = useCallback(
     (sura) => {
       setSelectedSura(sura);
@@ -147,7 +146,7 @@ export const AppProvider = ({ children }) => {
         dispatch({ type: 'SET_CURRENT_PLAYLISTS', payload: [] });
       }
     },
-    [state.links]
+    [state.links, playlists]
   );
 
   // Function to update visible suras from DisplayLinks
