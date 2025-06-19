@@ -530,7 +530,7 @@ const links = [
   {
     id: '89',
     sura: 'آل عمران',
-    verse: 'من 111 إلى 115',
+    verse: 'من 110 إلى 115',
     url: 'https://youtu.be/I5NAvGTkzJs',
   },
   {
