@@ -1053,7 +1053,7 @@ const links = [
     id: '176',
     sura: 'الأنعام',
     verse: 'من 136 إلى 144',
-    url: 'https://youtu.be/-zplfGSKP34',
+    url: 'https://youtu.be/vsbAcrnh1jE',
   },
   {
     id: '177',
