@@ -286,14 +286,20 @@ const DisplayHadith = () => {
                           </div>
 
                           {item.url && item.url !== 'TBA' ? (
-                            <a
-                              href={item.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm w-full block font-bold"
-                            >
-                              مشاهدة الحديث
-                            </a>
+                            item.url === 'الفيديو مفقود' ? (
+                              <span className="mt-auto py-2 px-3 bg-gray-500 text-white rounded text-center text-sm w-full block font-bold cursor-not-allowed">
+                                الفيديو مفقود
+                              </span>
+                            ) : (
+                              <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-auto py-2 px-3 bg-green-800 text-white rounded hover:bg-green-600 transition duration-300 text-center text-sm w-full block font-bold"
+                              >
+                                مشاهدة الحديث
+                              </a>
+                            )
                           ) : (
                             <span className="mt-auto py-2 px-3 bg-yellow-500 text-white rounded text-center text-sm font-bold">
                               سيتم إضافته قريباً
