@@ -288,7 +288,7 @@ const DisplayHadith = () => {
                           {item.url && item.url !== 'TBA' ? (
                             item.url === 'الفيديو مفقود' ? (
                               <span className="mt-auto py-2 px-3 bg-gray-500 text-white rounded text-center text-sm w-full block font-bold cursor-not-allowed">
-                                الفيديو مفقود
+                                التسجيل مفقود
                               </span>
                             ) : (
                               <a
