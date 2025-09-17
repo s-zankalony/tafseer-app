@@ -1593,19 +1593,19 @@ const links = [
     id: '266',
     sura: 'الحجر',
     verse: 'من 1 إلى 25',
-    url: 'https://youtu.be/SAB2r7QtiJs',
+    url: 'https://youtu.be/6rRq27yQEZ8',
   },
   {
     id: '267',
     sura: 'الحجر',
     verse: 'من 26 إلى 48',
-    url: 'https://youtu.be/JgAhhnDdWGw',
+    url: 'https://youtu.be/LEhGpb6FPro',
   },
   {
     id: '268',
     sura: 'الحجر',
     verse: 'من 49 إلى 79',
-    url: 'https://www.youtube.com/watch?v=G7t7cVY83EI&list=PLkwhWrnJjHAWJq_00frJvpeC3zgwBxUeY&index=3',
+    url: 'https://youtu.be/QfCd1QhDCTk',
   },
   {
     id: '269',
