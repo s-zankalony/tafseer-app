@@ -1647,7 +1647,7 @@ const links = [
     id: '275',
     sura: 'النحل',
     verse: 'من 75 إلى 83',
-    url: 'https://youtu.be/gvNO4wcYVDo',
+    url: 'https://youtu.be/-peICC4Vwsk',
   },
   {
     id: '276',
