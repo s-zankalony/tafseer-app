@@ -860,8 +860,8 @@ const links = [
   {
     id: '144',
     sura: 'المائدة',
-    verse: 'من 45 إلى 47',
-    url: 'https://youtu.be/K4S1ScKewq0',
+    verse: 'من 44 إلى 47',
+    url: 'https://youtu.be/6FgK9ftkUy0',
   },
   {
     id: '145',
