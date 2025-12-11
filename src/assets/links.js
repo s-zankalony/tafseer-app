@@ -3591,7 +3591,7 @@ const links = [
     id: '599',
     sura: 'الكافرون - النصر - المسد',
     verse: 'كاملين',
-    url: 'https://youtu.be/raclp-H_EHo',
+    url: 'https://youtu.be/etEZj-5rHw0',
   },
   {
     id: '600',
