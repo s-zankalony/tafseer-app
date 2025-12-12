@@ -114,7 +114,7 @@ const booksData = [
   },
   {
     id: 'contemplations',
-    name: 'Contemplations',
+    name: "Contemplations Of Qur'anic Verses",
     thumbnail: '/books/thumbnails/12 Contemplations.png',
     language: 'en',
     pdf: '/books/english/12 Contemplations.pdf',
