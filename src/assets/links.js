@@ -1005,7 +1005,7 @@ const links = [
     id: '168',
     sura: 'الأنعام',
     verse: 'من 68 إلى 73',
-    url: 'https://youtu.be/m5AdMQ10poE',
+    url: 'https://youtu.be/V3R3o5jEmzE',
   },
   {
     id: '169',
