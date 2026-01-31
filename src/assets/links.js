@@ -2439,7 +2439,7 @@ const links = [
     id: '407',
     sura: 'الأحزاب',
     verse: 'من 56 إلى 58',
-    url: 'https://youtu.be/S80Bgv4AQU0',
+    url: 'https://youtu.be/LoHFla_wNNs',
   },
   {
     id: '408',
