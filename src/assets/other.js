@@ -9,7 +9,7 @@ const other = [
   },
   {
     name: 'شرح كتاب "الإسلام وأركانه" (يوليو 1977م - أكتوبر 1978م)',
-    url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAUpelco5UxJOn58c6sqFzx1&feature=shared',
+    url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAV8oydnaCx5C-vCxHjbHR6U&si=KEHcibo4Vje62Q21',
   },
   {
     name: 'إجابات أسـئلة رواد مسـجد المواسـاة',
