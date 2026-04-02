@@ -36,12 +36,12 @@ const ramadan = [
     url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAVb0PfuKHc246WGgvUyybG1&feature=shared',
   },
   {
-    name: 'من مجامع الكلم - 1991م',
-    url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAUBzlLrc2xmuILdI1J6FtBl&feature=shared',
+    name: 'من بلاغة القرآن - 1990م',
+    url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAXrFXDhytysDpk2NbIhwR42&feature=shared',
   },
   {
-    name: 'من بلاغة القرآن - 1992م',
-    url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAXrFXDhytysDpk2NbIhwR42&feature=shared',
+    name: 'من مجامع الكلم - 1991م',
+    url: 'https://youtube.com/playlist?list=PLkwhWrnJjHAUBzlLrc2xmuILdI1J6FtBl&feature=shared',
   },
   {
     name: 'من أحكام الإسلام - 1993م',
