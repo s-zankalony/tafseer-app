@@ -63,7 +63,7 @@ const links = [
     id: '11',
     sura: 'البقرة',
     verse: 'من 40 إلى 43',
-    url: 'https://youtu.be/JONjH9DlvBw',
+    url: 'https://youtu.be/MciwO2AJDJo',
   },
   {
     id: '12',
