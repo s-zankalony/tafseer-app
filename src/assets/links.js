@@ -525,7 +525,7 @@ const links = [
     id: '88',
     sura: 'آل عمران',
     verse: 'من 105 إلى 110',
-    url: 'https://youtu.be/Lylch6QzMX4',
+    url: 'https://youtu.be/G-6zeXizQ1o',
   },
   {
     id: '89',
@@ -2439,7 +2439,7 @@ const links = [
     id: '407',
     sura: 'الأحزاب',
     verse: 'من 56 إلى 58',
-    url: 'https://youtu.be/LoHFla_wNNs',
+    url: 'https://youtu.be/U-jlj4ziRrc',
   },
   {
     id: '408',
