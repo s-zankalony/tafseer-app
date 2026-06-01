@@ -1083,7 +1083,7 @@ const links = [
     id: '181',
     sura: 'الأعراف',
     verse: 'من 10 إلى 25',
-    url: 'https://youtu.be/iVsGoTPL2j4',
+    url: 'https://youtu.be/BhZnedQj5a0',
   },
   {
     id: '182',
