@@ -24,10 +24,12 @@ const Pagination = (props) => {
   }
 
   const onNext = () => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     onPageChange(currentPage + 1);
   };
 
   const onPrevious = () => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     onPageChange(currentPage - 1);
   };
 
@@ -59,7 +61,10 @@ const Pagination = (props) => {
             className={classnames('pagination-item', {
               selected: pageNumber === currentPage,
             })}
-            onClick={() => onPageChange(pageNumber)}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'instant' });
+              onPageChange(pageNumber);
+            }}
             key={pageNumber}
           >
             {pageNumber}
