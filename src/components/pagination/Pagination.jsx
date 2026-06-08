@@ -2,6 +2,21 @@ import React from 'react';
 import classnames from 'classnames';
 import { usePagination, DOTS } from './usePagination';
 import './pagination.scss';
+
+const scrollToTop = (duration = 800) => {
+  const start = window.scrollY;
+  if (start === 0) return;
+  const startTime = performance.now();
+  const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+  const step = (currentTime) => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, start * (1 - easeInOutQuad(progress)));
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+
 const Pagination = (props) => {
   const {
     onPageChange,
@@ -24,12 +39,12 @@ const Pagination = (props) => {
   }
 
   const onNext = () => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    scrollToTop();
     onPageChange(currentPage + 1);
   };
 
   const onPrevious = () => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    scrollToTop();
     onPageChange(currentPage - 1);
   };
 
@@ -62,7 +77,7 @@ const Pagination = (props) => {
               selected: pageNumber === currentPage,
             })}
             onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'instant' });
+              scrollToTop();
               onPageChange(pageNumber);
             }}
             key={pageNumber}
