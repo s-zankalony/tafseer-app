@@ -1178,13 +1178,13 @@ const links = [
   {
     id: '197',
     sura: 'الأعراف',
-    verse: 'من 164 إلى 170',
+    verse: 'من 164 إلى 168',
     url: 'https://youtu.be/R9FSd9r3qoM',
   },
   {
     id: '198',
     sura: 'الأعراف',
-    verse: 'من 171 إلى 177',
+    verse: 'من 169 إلى 177',
     url: 'https://youtu.be/ApYy6iaGHD0',
   },
   {
