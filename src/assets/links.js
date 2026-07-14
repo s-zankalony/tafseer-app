@@ -1232,13 +1232,13 @@ const links = [
   {
     id: '206',
     sura: 'الأنفال',
-    verse: 'من 41 إلى 45',
+    verse: 'من 41 إلى 46',
     url: 'https://youtu.be/5HPK5u2INLQ',
   },
   {
     id: '207',
     sura: 'الأنفال',
-    verse: 'من 46 إلى 58',
+    verse: 'من 47 إلى 58',
     url: 'https://youtu.be/oj5EoT6mHuc',
   },
   {
