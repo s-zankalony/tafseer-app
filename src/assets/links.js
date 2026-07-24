@@ -543,7 +543,7 @@ const links = [
     id: '91',
     sura: 'آل عمران',
     verse: 'من 121 إلى 129',
-    url: 'https://youtu.be/6cvKR71kClY',
+    url: 'https://youtu.be/kZ9nWwWBZhY',
   },
   {
     id: '92',
