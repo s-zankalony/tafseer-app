@@ -1953,7 +1953,7 @@ const links = [
     id: '326',
     sura: 'الحج',
     verse: 'من 25 إلى 37',
-    url: 'https://youtu.be/kgoiVaCd0_s',
+    url: 'https://youtu.be/WgFW2fbB1jc',
   },
   {
     id: '327',
@@ -1965,13 +1965,13 @@ const links = [
     id: '328',
     sura: 'الحج',
     verse: 'من 55 إلى 70',
-    url: 'https://youtu.be/YzSSGYcdVvo',
+    url: 'https://youtu.be/k31M5F_Pgbo',
   },
   {
     id: '329',
     sura: 'الحج',
     verse: 'من 71 إلى 78',
-    url: 'https://youtu.be/BL8v5VJc4ZQ',
+    url: 'https://youtu.be/ALCQYMLdn78',
   },
   {
     id: '330',
