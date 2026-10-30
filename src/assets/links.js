@@ -1448,13 +1448,13 @@ const links = [
   {
     id: '242',
     sura: 'هود',
-    verse: 'من 69 إلى 77',
+    verse: 'من 69 إلى 78',
     url: 'https://youtu.be/YXFWB04zSLE',
   },
   {
     id: '243',
     sura: 'هود',
-    verse: 'من 78 إلى 90',
+    verse: 'من 79 إلى 90',
     url: 'https://youtu.be/1xICo2VNu80',
   },
   {
