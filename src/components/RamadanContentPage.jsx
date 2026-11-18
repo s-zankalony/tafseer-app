@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import ramadan from '../assets/ramadan';
 import { getId, getPlaylistId, getThumbnailUrl } from '../assets/functions';
 import { VideoModal } from './VideoModal';

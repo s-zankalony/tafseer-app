@@ -1,4 +1,3 @@
-import React from 'react';
 import { biography } from '../assets/sheikhBiography';
 
 const Biography = () => {

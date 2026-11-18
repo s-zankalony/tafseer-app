@@ -1,7 +1,6 @@
 import { FaAlignJustify } from 'react-icons/fa';
-import { MdMenuBook } from 'react-icons/md';
 import quranIcon from '../assets/quran_dg32u6vdkhyz.svg';
-import { useGlobalContext } from './context';
+import { useGlobalContext } from './useGlobalContext';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {

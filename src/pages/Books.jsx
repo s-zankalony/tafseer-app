@@ -1,6 +1,5 @@
-import React from 'react';
 import booksData from '../assets/books/booksData';
-import { useGlobalContext } from '../components/context'; // Assuming context is used for consistent styling or other global states
+import { useGlobalContext } from '../components/useGlobalContext'; // Assuming context is used for consistent styling or other global states
 
 const Books = () => {
   const { isSidebarOpen } = useGlobalContext(); // Example usage of global context

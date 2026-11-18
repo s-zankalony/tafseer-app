@@ -1,91 +1,15 @@
-import { FaAlignJustify } from 'react-icons/fa';
-import {
-  useContext,
-  useMemo,
-  useCallback,
-  memo,
-  useEffect,
-  useState,
-} from 'react';
-import { AppContext } from './context';
-import { NavLink, useLocation } from 'react-router-dom';
+import { memo } from 'react';
+import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+import { useGlobalContext } from './useGlobalContext';
 import SidebarPlaylist from './SidebarPlaylist';
 import SidebarHadithJuz from './SidebarHadithJuz';
 
-const SidebarLink = memo(({ to, isActive, onClick, children }) => (
-  <NavLink
-    to={to}
-    className={
-      isActive
-        ? 'flex items-center p-2 text-green-100 bg-green-700 rounded-lg hover:bg-green-600 group cursor-pointer font-bold'
-        : 'flex items-center p-2 text-green-700 rounded-lg hover:bg-gray-100 group cursor-pointer font-bold'
-    }
-    onClick={onClick}
-  >
-    {children}
-  </NavLink>
-));
-
 const Sidebar2 = ({ children }) => {
-  const {
-    isSidebarOpen,
-    normalizeString,
-    toggleSidebar,
-    selectedSura,
-    activeTab,
-    setActiveTab,
-    hadithActiveTab,
-    playlists = [], // Add default empty array
-  } = useContext(AppContext);
+  const { isSidebarOpen, activeTab, hadithActiveTab } = useGlobalContext();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isHadithPage = location.pathname === '/bukhari';
-  const [showHadithSidebar, setShowHadithSidebar] = useState(false);
-
-  // Reset to 'tafseer' tab once on initial mount if we're on the home page
-  useEffect(() => {
-    if (location.pathname === '/') {
-      setActiveTab('tafseer');
-    }
-  }, []); // <-- no dependencies, runs only once
-
-  const sidebarClasses = `transform ${
-    isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-  } fixed left-0 top-0 z-40 h-screen w-64 overflow-y-auto bg-white pt-16 transition-transform duration-300 ease-in-out sm:translate-x-0 sm:static sm:h-auto sm:w-64 sm:pt-0`;
-  const filteredPlaylists = useMemo(() => {
-    if (!playlists?.length) {
-      return [];
-    }
-
-    return playlists.filter((playlist) => {
-      if (!selectedSura || !playlist?.sura) {
-        return false;
-      }
-
-      const normalizedSura = normalizeString(selectedSura);
-      const normalizedPlaylistSura = normalizeString(playlist.sura);
-
-      if (playlist.sura === 'سـبأ' && normalizedSura.startsWith('سب')) {
-        return true;
-      }
-
-      return (
-        normalizedSura === normalizedPlaylistSura ||
-        normalizedSura.startsWith(normalizedPlaylistSura)
-      );
-    });
-  }, [playlists, selectedSura, normalizeString]);
-
-  const handleLinkClick = useCallback(() => {
-    if (window.innerWidth < 640) {
-      toggleSidebar();
-    }
-  }, [toggleSidebar]);
-
-  // Effect to track hadith/tab visibility
-  useEffect(() => {
-    setShowHadithSidebar(activeTab === 'hadith');
-  }, [activeTab]);
 
   // Don't show sidebar when "other" tab is active
   if (activeTab === 'other') {
@@ -125,6 +49,10 @@ const Sidebar2 = ({ children }) => {
       </aside>
     </div>
   );
+};
+
+Sidebar2.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default memo(Sidebar2);

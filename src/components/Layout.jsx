@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar2';
-import { useGlobalContext } from './context';
+import { useGlobalContext } from './useGlobalContext';
 
 const Footer = memo(({ year }) => (
   <footer
@@ -59,6 +60,11 @@ const Footer = memo(({ year }) => (
   </footer>
 ));
 
+Footer.displayName = 'Footer';
+Footer.propTypes = {
+  year: PropTypes.number.isRequired,
+};
+
 const Layout = ({ children }) => {
   const year = new Date().getFullYear();
   const { activeTab } = useGlobalContext();
@@ -78,6 +84,10 @@ const Layout = ({ children }) => {
       <Footer year={year} />
     </div>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default memo(Layout);

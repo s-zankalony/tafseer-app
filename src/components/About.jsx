@@ -1,5 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+
+const CenteredParagraph = ({ children }) => (
+  <p className="text-center font-amiri-bold">{children}</p>
+);
+
+CenteredParagraph.propTypes = {
+  children: PropTypes.node,
+};
 
 const About = () => {
   const [mainContent, setMainContent] = useState('');
@@ -34,9 +43,7 @@ const About = () => {
           <div className="not-prose text-center mt-4">
             <ReactMarkdown
               components={{
-                p: ({ node, ...props }) => (
-                  <p className="text-center font-amiri-bold" {...props} />
-                ),
+                p: CenteredParagraph,
               }}
             >
               {lastLine}

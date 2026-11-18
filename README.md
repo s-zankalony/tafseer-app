@@ -46,8 +46,8 @@ vite.config.js
 
 ### Prerequisites
 
-- Node.js (version 14 or higher)
-- npm (version 6 or higher)
+- Node.js 24.x (see `package.json` and `.nvmrc`)
+- npm 11.x
 
 ### Installation
 
@@ -72,7 +72,7 @@ To start the development server, run:
 npm run dev
 ```
 
-This will start the Vite development server and you can view the application at `http://localhost:3000`.
+This will start the Vite development server and you can view the application at `http://localhost:5173`.
 
 ### Building the Project
 
@@ -138,3 +138,7 @@ For any inquiries, please contact Sameh El Zankalony at [sameh@zankalony.com](ma
 # Contributions are Welcome!
 
 Feel free to contribute to this project.
+
+## Development dependency security
+
+A temporary, tested Picomatch parser mitigation is applied during installation and before development builds. The upstream development-only audit alerts remain visible. Read [the security instructions](Docs/DEVELOPMENT_SECURITY.md) before changing dependencies or development launch commands.

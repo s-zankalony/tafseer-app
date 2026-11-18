@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import { memo, useState } from 'react';
 import { VideoModal } from './VideoModal';
 import { getId, getThumbnailUrl } from '../assets/functions';
 
-const OneLink = ({ thumbSRC, link }) => {
+const OneLink = ({ link }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [imageError, setImageError] = useState(false);
   const videoId = getId(link.url);
@@ -52,6 +53,14 @@ const OneLink = ({ thumbSRC, link }) => {
       )}
     </>
   );
+};
+
+OneLink.propTypes = {
+  link: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    sura: PropTypes.string.isRequired,
+    verse: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default memo(OneLink);

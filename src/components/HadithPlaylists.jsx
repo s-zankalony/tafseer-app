@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import hadithPlaylists from '../assets/hadithPlaylists';
 import { getId, getPlaylistId, getThumbnailUrl } from '../assets/functions';
 import { VideoModal } from './VideoModal';
