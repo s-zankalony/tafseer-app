@@ -1,6 +1,6 @@
-import React, { memo, useState, useCallback, useMemo, useEffect } from 'react';
+import { memo, useState, useCallback, useMemo, useEffect } from 'react';
 import Pagination from './pagination/Pagination';
-import { useGlobalContext } from './context';
+import { useGlobalContext } from './useGlobalContext';
 import { getId, getThumbnailUrl } from '../assets/functions';
 import { VideoModal } from './VideoModal';
 import { NavLink } from 'react-router-dom';
@@ -199,6 +199,7 @@ const DisplayHadith = () => {
                 value={selectedJuz || ''}
                 onChange={(e) => handleJuzChange(e.target.value || null)}
               >
+                <option value="" disabled>اختر الجزء</option>
                 {juzOptions.map((juz) => (
                   <option key={`juz-mobile-${juz}`} value={juz}>
                     {juz}
@@ -221,6 +222,7 @@ const DisplayHadith = () => {
                 value={selectedBook || ''}
                 onChange={(e) => handleBookChange(e.target.value || null)}
               >
+                <option value="" disabled>اختر الكتاب</option>
                 {books.map((book, index) => (
                   <option key={`book-${index}-${book}`} value={book}>
                     {book}

@@ -2,8 +2,7 @@ import React, { memo, useState, useCallback, useEffect } from 'react';
 import OneLink from './OneLink';
 import Pagination from './pagination/Pagination';
 import SuraVerseSelect from './SuraVerseSelect';
-import { useGlobalContext } from './context';
-import { getId } from '../assets/functions';
+import { useGlobalContext } from './useGlobalContext';
 import { NavLink } from 'react-router-dom';
 
 const PAGE_SIZE = 9;
@@ -80,11 +79,9 @@ const DisplayLinks = () => {
           <div className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 xxs:gap-2 sm:gap-4 my-4 auto-rows-fr mx-auto">
               {currentLinksData.map((link) => {
-                const videoId = getId(link.url);
-                const thumbSRC = `https://www.youtube.com/embed/${videoId}`;
                 return (
                   <div key={link.id} className="h-full w-full min-w-0">
-                    <OneLink thumbSRC={thumbSRC} link={link} />
+                    <OneLink link={link} />
                   </div>
                 );
               })}

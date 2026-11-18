@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 // VideoModal.jsx
 export function VideoModal({ videoId, playlistId, startTime, onClose }) {
   if (!videoId && !playlistId) return null;
@@ -34,3 +36,10 @@ export function VideoModal({ videoId, playlistId, startTime, onClose }) {
     </div>
   );
 }
+
+VideoModal.propTypes = {
+  videoId: PropTypes.string,
+  playlistId: PropTypes.string,
+  startTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onClose: PropTypes.func.isRequired,
+};

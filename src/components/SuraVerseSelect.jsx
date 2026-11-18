@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const SuraVerseSelect = ({
@@ -74,6 +75,18 @@ const SuraVerseSelect = ({
       </div>
     </div>
   );
+};
+
+SuraVerseSelect.propTypes = {
+  links: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    sura: PropTypes.string.isRequired,
+    verse: PropTypes.string.isRequired,
+  })).isRequired,
+  selectedSura: PropTypes.string,
+  selectedVerse: PropTypes.string,
+  onSuraChange: PropTypes.func.isRequired,
+  onVerseChange: PropTypes.func.isRequired,
 };
 
 export default SuraVerseSelect;

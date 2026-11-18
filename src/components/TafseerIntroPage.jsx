@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import tafseerIntro from '../assets/tafseerIntro.js';
 import { getId, getThumbnailUrl } from '../assets/functions.jsx';
 import { VideoModal } from './VideoModal';

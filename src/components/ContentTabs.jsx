@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import DisplayLinks from './DisplayLinks';
 import Playlists from './Playlists';
-import { useGlobalContext } from './context';
+import { useGlobalContext } from './useGlobalContext';
 
 const ContentTabs = () => {
   const { setActiveTab, activeTab } = useGlobalContext();

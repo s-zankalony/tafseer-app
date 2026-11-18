@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useGlobalContext } from './context';
+import { useState, useEffect } from 'react';
+import { useGlobalContext } from './useGlobalContext';
 
 const Search = () => {
   const { searchTerm, setSearchTerm } = useGlobalContext();

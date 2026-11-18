@@ -1,5 +1,5 @@
 import { memo, useCallback, useMemo, useEffect } from 'react';
-import { useGlobalContext } from './context';
+import { useGlobalContext } from './useGlobalContext';
 
 const SidebarHadithJuz = () => {
   const { hadith, setSelectedJuz, selectedJuz } = useGlobalContext();

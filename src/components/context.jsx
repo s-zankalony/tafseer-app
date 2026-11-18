@@ -1,13 +1,13 @@
 import {
-  useContext,
   useReducer,
   useEffect,
-  createContext,
   useMemo,
   useCallback,
   useState,
 } from 'react';
 import debounce from 'lodash/debounce';
+import PropTypes from 'prop-types';
+import { AppContext } from './useGlobalContext';
 import linksData from '../assets/links';
 import hadithData from '../assets/hadith';
 import { reducer } from './reducer.jsx';
@@ -26,8 +26,6 @@ const initialState = {
   activeTab: 'tafseer', // Add this to track active tab
   hadithActiveTab: 'hadith', // Add this to track active tab in hadith page
 };
-
-export const AppContext = createContext();
 
 const PAGE_SIZE = 9;
 
@@ -117,13 +115,15 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: 'SET_CURRENT_LINKS_DATA', payload: currentLinksData });
   }, [currentLinksData]);
 
-  const debouncedSetSearchTerm = useCallback(
-    debounce(
+  const debouncedSetSearchTerm = useMemo(
+    () => debounce(
       (term) => dispatch({ type: 'SET_SEARCH_TERM', payload: term }),
       300
     ),
     []
   );
+  useEffect(() => () => debouncedSetSearchTerm.cancel(), [debouncedSetSearchTerm]);
+
   const updateSelectedSura = useCallback(
     (sura) => {
       setSelectedSura(sura);
@@ -184,6 +184,6 @@ export const AppProvider = ({ children }) => {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
-export const useGlobalContext = () => {
-  return useContext(AppContext);
+AppProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
